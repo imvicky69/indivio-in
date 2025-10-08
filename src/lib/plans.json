@@ -1,0 +1,53 @@
+[
+	{
+		"id": "starter-site",
+		"name": "Starter Site",
+		"setupFee": 12000,
+		"price": 3500,
+		"pricePeriod": " / year",
+		"short": "A simple, elegant school website (4-5 pages) + CMS dashboard.",
+		"description": "Perfect for small schools that need a professional web presence quickly. Includes hosting, SSL, and a content dashboard for easy updates.",
+		"isMostPopular": false,
+		"features": [
+			"4-5 custom pages (Home, About, Admissions, Contact, News)",
+			"Admin dashboard to edit content & images",
+			"Hassle-free hosting & SSL",
+			"Basic SEO setup & site map"
+		],
+		"order": 1
+	},
+	{
+		"id": "growth-site",
+		"name": "Growth Site",
+		"setupFee": 20000,
+		"price": 5500,
+		"pricePeriod": " / year",
+		"short": "More pages, SEO optimization and downloadable resources.",
+		"description": "For growing schools that want better visibility and student resources. Includes advanced SEO, notices, and downloadable pages.",
+		"isMostPopular": true,
+		"features": [
+			"Up to 12 pages with custom layouts",
+			"Advanced SEO and metadata optimization",
+			"Notices & downloadable resources pages",
+			"Priority support and quarterly reviews"
+		],
+		"order": 2
+	},
+	{
+		"id": "enterprise-site",
+		"name": "Enterprise Site",
+		"setupFee": 35000,
+		"price": 25000,
+		"pricePeriod": " / year",
+		"short": "Custom repo, dedicated deployment, high-SEO and bespoke design.",
+		"description": "Tailored solutions for large institutions: custom design, repo access, on-prem or cloud deployment support, and premium SEO & performance tuning.",
+		"isMostPopular": false,
+		"features": [
+			"Custom repo + deployment to your domain",
+			"High-performance hosting & CDN",
+			"Dedicated design & UX improvements",
+			"Advanced SEO, analytics & integration"
+		],
+		"order": 3
+	}
+]

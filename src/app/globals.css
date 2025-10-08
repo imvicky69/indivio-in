@@ -8,35 +8,35 @@
   --------------------------------------------------
 */
 :root {
-  --background: 43 100% 97%; /* Light Cream */
-  --foreground: 0 0% 7%;   /* Dark Gray / Black for text */
+	--background: 43 100% 97%; /* Light Cream */
+	--foreground: 0 0% 7%; /* Dark Gray / Black for text */
 
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 7%;
+	--card: 0 0% 100%;
+	--card-foreground: 0 0% 7%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 7%;
+	--popover: 0 0% 100%;
+	--popover-foreground: 0 0% 7%;
 
-  --primary: 0 0% 0%; /* Black */
-  --primary-foreground: 0 0% 100%; /* White text on blue buttons */
+	--primary: 0 0% 0%; /* Black */
+	--primary-foreground: 0 0% 100%; /* White text on blue buttons */
 
-  --secondary: 0 0% 96.1%;
-  --secondary-foreground: 0 0% 9%;
+	--secondary: 0 0% 96.1%;
+	--secondary-foreground: 0 0% 9%;
 
-  --muted: 0 0% 90%; /* A muted gray for backgrounds */
-  --muted-foreground: 0 0% 45.1%;
+	--muted: 0 0% 90%; /* A muted gray for backgrounds */
+	--muted-foreground: 0 0% 45.1%;
 
-  --accent: 25 95% 53%; /* Your Brand Orange: #f97316 */
-  --accent-foreground: 0 0% 100%;
+	--accent: 25 95% 53%; /* Your Brand Orange: #f97316 */
+	--accent-foreground: 0 0% 100%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+	--destructive: 0 84.2% 60.2%;
+	--destructive-foreground: 0 0% 98%;
 
-  --border: 0 0% 89.8%;
-  --input: 0 0% 89.8%;
-  --ring: 217 100% 34%; /* Blue for focus rings */
+	--border: 0 0% 89.8%;
+	--input: 0 0% 89.8%;
+	--ring: 217 100% 34%; /* Blue for focus rings */
 
-  --radius: 0.75rem;
+	--radius: 0.75rem;
 }
 
 /* 
@@ -44,33 +44,102 @@
   --------------------------------------------------
 */
 .dark {
-  --background: 0 0% 7%; /* Dark Gray: #111111 */
-  --foreground: 0 0% 98%; /* White text */
+	--background: 0 0% 7%; /* Dark Gray: #111111 */
+	--foreground: 0 0% 98%; /* White text */
 
-  --card: 0 0% 10%;
-  --card-foreground: 0 0% 98%;
+	--card: 0 0% 10%;
+	--card-foreground: 0 0% 98%;
 
-  --popover: 0 0% 7%;
-  --popover-foreground: 0 0% 98%;
-  
-  /* In Dark Mode, Orange becomes the primary action color */
-  --primary: 25 95% 53%; /* Your Brand Orange: #f97316 */
-  --primary-foreground: 0 0% 7%; /* Dark text on orange buttons */
+	--popover: 0 0% 7%;
+	--popover-foreground: 0 0% 98%;
 
-  --secondary: 0 0% 14.9%;
-  --secondary-foreground: 0 0% 98%;
+	/* In Dark Mode, Orange becomes the primary action color */
+	--primary: 25 95% 53%; /* Your Brand Orange: #f97316 */
+	--primary-foreground: 0 0% 7%; /* Dark text on orange buttons */
 
-  --muted: 0 0% 14.9%;
-  --muted-foreground: 0 0% 63.9%;
+	--secondary: 0 0% 14.9%;
+	--secondary-foreground: 0 0% 98%;
 
-  /* The accent dot will still use this */
-  --accent: 25 95% 53%; /* Orange */
-  --accent-foreground: 0 0% 7%;
+	--muted: 0 0% 14.9%;
+	--muted-foreground: 0 0% 63.9%;
 
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
+	/* The accent dot will still use this */
+	--accent: 25 95% 53%; /* Orange */
+	--accent-foreground: 0 0% 7%;
 
-  --border: 0 0% 14.9%;
-  --input: 0 0% 14.9%;
-  --ring: 25 95% 53%; /* Orange for focus rings */
+	--destructive: 0 62.8% 30.6%;
+	--destructive-foreground: 0 0% 98%;
+
+	--border: 0 0% 14.9%;
+	--input: 0 0% 14.9%;
+	--ring: 25 95% 53%; /* Orange for focus rings */
+}
+
+/* Typography and layout improvements */
+html {
+	font-family:
+		var(--font-poppins, Poppins),
+		system-ui,
+		-apple-system,
+		'Segoe UI',
+		Roboto,
+		'Helvetica Neue',
+		Arial;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: hsl(var(--background));
+	color: hsl(var(--foreground));
+}
+
+/* Prefer Inter for headings (loaded in layout) */
+:root {
+	--font-heading: var(--font-inter, Inter);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: var(--font-heading), var(--font-poppins), system-ui;
+	color: hsl(var(--foreground));
+	line-height: 1.05;
+}
+
+body {
+	font-family:
+		var(--font-poppins),
+		system-ui,
+		-apple-system,
+		'Segoe UI',
+		Roboto;
+	font-size: 16px;
+	line-height: 1.6;
+}
+
+/* Headline utilities */
+.site-hero-title {
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+}
+
+.section-heading {
+	font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+	font-weight: 600;
+}
+
+/* Make buttons and links use the primary color variable */
+.btn-primary {
+	background-color: hsl(var(--primary));
+	color: hsl(var(--primary-foreground));
+}
+
+/* Improve containers */
+.container {
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
 }

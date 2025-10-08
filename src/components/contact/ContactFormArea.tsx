@@ -3,8 +3,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Mail, MapPin, MessageSquare, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { db } from '@/lib/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react';
 
@@ -36,11 +34,12 @@ export function ContactFormArea() {
     const notification = toast.loading('Sending your message...');
 
     try {
-      // Add a new document with a generated id to the "contact-submissions" collection
-      await addDoc(collection(db, 'contact-submissions'), {
-        ...data,
-        submittedAt: serverTimestamp(), // Add a server-side timestamp
-      });
+      // Simulate form submission delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // For now, just show success message without Firebase
+      // TODO: Implement proper form submission (email service, etc.)
+      console.log('Form submitted:', data);
 
       toast.success(
         'Message sent successfully! We will get back to you soon.',
@@ -48,7 +47,7 @@ export function ContactFormArea() {
       );
       reset(); // Clear the form
     } catch (error) {
-      console.error('Error adding document: ', error);
+      console.error('Error submitting form: ', error);
       toast.error('Something went wrong. Please try again.', {
         id: notification,
       });

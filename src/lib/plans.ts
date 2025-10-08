@@ -1,60 +1,58 @@
-import { db } from './firebase';
-import { collection, getDocs, doc, getDoc, query, orderBy } from 'firebase/firestore';
+import plansData from './plans.json';
+import offersData from './offers.json';
 
 export interface Plan {
-  id: string;
-  name: string;
-  price: number;
-  pricePeriod: string;
-  description: string;
-  isMostPopular: boolean;
-  features: string[];
-  order: number;
+	id: string;
+	name: string;
+	price: number;
+	setupFee?: number;
+	originalPrice?: number;
+	pricePeriod: string;
+	description: string;
+	short?: string;
+	isMostPopular: boolean;
+	features: string[];
+	order: number;
 }
 
 export interface Offer {
-    id: string;
-    code: string;
-    title: string;
-    description: string;
+	id: string;
+	code: string;
+	title: string;
+	description: string;
 }
 
-// Fetches all pricing plans, sorted by the 'order' field
+// Fetches all pricing plans from local JSON, sorted by the 'order' field
 export async function getPricingPlans(): Promise<Plan[]> {
-  try {
-    const plansCollection = collection(db, 'plans');
-    const q = query(plansCollection, orderBy('order'));
-    const plansSnapshot = await getDocs(q);
-    return plansSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Plan));
-  } catch (error) {
-    console.error("Error fetching pricing plans: ", error);
-    return [];
-  }
+	try {
+		// Clone and sort by order to preserve the API shape
+		const plans: Plan[] = (plansData as Plan[])
+			.slice()
+			.sort((a, b) => a.order - b.order);
+		return plans;
+	} catch (error) {
+		console.error('Error reading pricing plans: ', error);
+		return [];
+	}
 }
 
-// Fetches a single plan by its ID (slug)
+// Fetches a single plan by its ID (slug) from local JSON
 export async function getPlanById(id: string): Promise<Plan | null> {
-  try {
-    const planDocRef = doc(db, 'plans', id);
-    const planDoc = await getDoc(planDocRef);
-    if (planDoc.exists()) {
-      return { id: planDoc.id, ...planDoc.data() } as Plan;
-    }
-    return null;
-  } catch (error) {
-    console.error(`Error fetching plan ${id}: `, error);
-    return null;
-  }
+	try {
+		const plan = (plansData as Plan[]).find((p) => p.id === id) || null;
+		return plan;
+	} catch (error) {
+		console.error(`Error reading plan ${id}: `, error);
+		return null;
+	}
 }
 
-// Fetches all active offers
+// Fetches all active offers from local JSON
 export async function getOffers(): Promise<Offer[]> {
-    try {
-        const offersCollection = collection(db, 'offers');
-        const offersSnapshot = await getDocs(offersCollection);
-        return offersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Offer));
-    } catch (error) {
-        console.error("Error fetching offers: ", error);
-        return [];
-    }
+	try {
+		return offersData as Offer[];
+	} catch (error) {
+		console.error('Error reading offers: ', error);
+		return [];
+	}
 }

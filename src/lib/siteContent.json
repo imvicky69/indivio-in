@@ -1,0 +1,15 @@
+{
+	"pricing": {
+		"heroTitle": "Website Solutions for Schools — Simple, Fast, Reliable",
+		"heroSubtitle": "We build, host, and hand you a dashboard to manage your school's website. No headaches, just results.",
+		"ctaPrimary": "Book Now",
+		"ctaSecondary": "Know More",
+		"sectionIntro": "Choose a website plan tailored for schools — each plan includes hosting, SSL, and an easy-to-use content dashboard. Upgrades and custom options available.",
+		"offerBanner": {
+			"enabled": true,
+			"text": "Launch Offer: 25% off the one-time setup fee — limited time! Use code LAUNCH25",
+			"discountPercent": 25,
+			"appliesTo": "setup"
+		}
+	}
+}

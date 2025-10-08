@@ -1,0 +1,14 @@
+[
+	{
+		"id": "launch25",
+		"code": "LAUNCH25",
+		"title": "Launch Offer - 25% off",
+		"description": "Get 25% off your first year when you sign up during our launch period."
+	},
+	{
+		"id": "schools10",
+		"code": "SCHOOLS10",
+		"title": "School Partner - 10% off",
+		"description": "Partner schools receive a recurring 10% discount on annual plans."
+	}
+]

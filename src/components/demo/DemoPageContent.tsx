@@ -107,7 +107,7 @@ function DemoAdminView({
 						type="text"
 						value={newName}
 						onChange={(e) => setNewName(e.target.value)}
-						placeholder="Enter topper's name"
+						placeholder={"Enter topper's name"}
 						className="flex-grow rounded-md border border-border p-2"
 					/>
 					<button
@@ -151,7 +151,7 @@ export function DemoPageContent() {
 						Experience School Management Made Simple
 					</h1>
 					<p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground">
-						See how easy it is to manage your school's website and showcase
+						See how easy it is to manage your school&apos;s website and showcase
 						student achievements. This interactive demo shows real features that
 						teachers and administrators use daily.
 					</p>
