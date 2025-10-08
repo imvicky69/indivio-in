@@ -60,8 +60,8 @@ export function TestimonialSection() {
 				<div className="mb-12 text-center">
 					<h2 className="font-display text-3xl font-bold">What Schools Say</h2>
 					<p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-						Hear from education leaders who&apos;ve transformed their online presence
-						with our website solutions.
+						Hear from education leaders who&apos;ve transformed their online
+						presence with our website solutions.
 					</p>
 				</div>
 

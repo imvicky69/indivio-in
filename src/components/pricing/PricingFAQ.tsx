@@ -30,7 +30,7 @@ export function PricingFAQ() {
 		{
 			question: 'Do I need to purchase a domain name separately?',
 			answer:
-				"You can either use your existing domain or we can help you purchase and set up a new one (additional domain registration fees may apply, typically ₹800-1500/year depending on the domain type).",
+				'You can either use your existing domain or we can help you purchase and set up a new one (additional domain registration fees may apply, typically ₹800-1500/year depending on the domain type).',
 		},
 		{
 			question: 'How long does it take to build my school website?',
@@ -40,7 +40,7 @@ export function PricingFAQ() {
 		{
 			question: 'What happens if I need help after the website launches?',
 			answer:
-				"All plans include different levels of ongoing support. For technical issues, security, and hosting-related matters, we provide support for all plans. Content updates are handled through your dashboard, with varying levels of assistance depending on your plan.",
+				'All plans include different levels of ongoing support. For technical issues, security, and hosting-related matters, we provide support for all plans. Content updates are handled through your dashboard, with varying levels of assistance depending on your plan.',
 		},
 	];
 
@@ -56,7 +56,8 @@ export function PricingFAQ() {
 						Frequently Asked Questions
 					</h2>
 					<p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-						Got questions about our school website pricing? We&apos;ve got answers.
+						Got questions about our school website pricing? We&apos;ve got
+						answers.
 					</p>
 				</div>
 
