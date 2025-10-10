@@ -19,7 +19,9 @@ interface PlanPageProps {
 }
 
 // Generate metadata for SEO
-export async function generateMetadata({ params }: PlanPageProps): Promise<Metadata> {
+export async function generateMetadata({
+	params,
+}: PlanPageProps): Promise<Metadata> {
 	const { planId } = await params;
 	const plan = await getPlanById(planId);
 
@@ -76,7 +78,10 @@ export default async function PlanDetailPage({ params }: PlanPageProps) {
 					<p className="mt-2 text-muted-foreground">
 						The requested plan could not be found.
 					</p>
-					<Link href="/pricing" className="mt-4 inline-block text-primary hover:underline">
+					<Link
+						href="/pricing"
+						className="mt-4 inline-block text-primary hover:underline"
+					>
 						View All Plans
 					</Link>
 				</div>
@@ -89,15 +94,16 @@ export default async function PlanDetailPage({ params }: PlanPageProps) {
 			{/* Hero Section */}
 			<section className="bg-gradient-to-br from-primary/10 via-white to-primary/5 pb-16 pt-32 sm:pb-20 sm:pt-40">
 				<div className="container mx-auto px-6">
-				<div className="mb-8">
-					<Link
-						href="/pricing"
-						className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-					>
-						<ArrowLeft className="h-4 w-4" />
-						Back to All Plans
-					</Link>
-				</div>					<div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+					<div className="mb-8">
+						<Link
+							href="/pricing"
+							className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+						>
+							<ArrowLeft className="h-4 w-4" />
+							Back to All Plans
+						</Link>
+					</div>{' '}
+					<div className="grid gap-12 lg:grid-cols-2 lg:items-center">
 						{/* Left Column - Plan Info */}
 						<div>
 							{plan.badge && (
@@ -152,7 +158,7 @@ export default async function PlanDetailPage({ params }: PlanPageProps) {
 								</Link>
 								<Link
 									href="/contact"
-									className="rounded-full border-2 border-border bg-background px-8 py-4 text-base font-semibold text-foreground transition-all hover:bg-muted hover:border-primary/30"
+									className="rounded-full border-2 border-border bg-background px-8 py-4 text-base font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-muted"
 								>
 									Schedule a Call
 								</Link>
@@ -265,10 +271,7 @@ export default async function PlanDetailPage({ params }: PlanPageProps) {
 							</div>
 							<ul className="space-y-4">
 								{plan.features.map((feature, idx) => (
-									<li
-										key={feature}
-										className="flex items-start gap-3"
-									>
+									<li key={feature} className="flex items-start gap-3">
 										<div className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
 											<Check className="h-4 w-4 text-green-600" />
 										</div>
@@ -515,7 +518,7 @@ export default async function PlanDetailPage({ params }: PlanPageProps) {
 						</Link>
 						<Link
 							href="/pricing"
-							className="rounded-full border-2 border-border bg-background px-8 py-4 text-lg font-semibold text-foreground transition-all hover:bg-muted hover:border-primary/30"
+							className="rounded-full border-2 border-border bg-background px-8 py-4 text-lg font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-muted"
 						>
 							Compare All Plans
 						</Link>
