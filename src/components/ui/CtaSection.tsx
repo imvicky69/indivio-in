@@ -1,8 +1,8 @@
-// src/components/CtaSection.tsx
-import { SectionHeading } from '@/components/SectionHeading';
-import { Button } from '@/components/ui/Button'; // <-- IMPORT OUR NEW BUTTON
+// src/components/ui/CtaSection.tsx
+'use client';
+import { Button } from '@/components/ui/Button';
+import { motion } from 'framer-motion';
 
-// The types and default props logic remain the same and are perfectly fine.
 type ButtonProps = {
 	text: string;
 	href: string;
@@ -15,50 +15,75 @@ type CtaSectionProps = {
 	buttons?: ButtonProps[];
 };
 
-const defaultHeading = 'Ready to take your school to the next level?';
+const defaultHeading = "Ready to Transform Your School's Digital Presence?";
 const defaultSubheading =
-	'Get started today and receive free 1-year hosting with any of our all-in-one management packages. No restrictions, full performance.';
+	'Get 17% OFF on all plans! Limited time launch offer. Join schools building their digital future with Indivio.';
 const defaultButtons: ButtonProps[] = [
-	{ text: 'Book Your site Now', href: '/booking', primary: false },
+	{ text: 'View Pricing Plans', href: '/pricing', primary: true },
+	{ text: 'Schedule Free Consultation', href: '/contact', primary: false },
 ];
 
 export function CtaSection({
 	heading = defaultHeading,
-	subheading = defaultSubheading, // Use the passed subheading, or default if undefined
+	subheading = defaultSubheading,
 	buttons = defaultButtons,
 }: CtaSectionProps) {
 	return (
-		// The hero-gradient now correctly adapts to the theme.
-		<section className="bg-hero-gradient py-20 sm:py-28">
-			<div className="container mx-auto px-6 text-center">
-				<SectionHeading>{heading}</SectionHeading>
+		<section className="section-padding relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-muted/20">
+			{/* Decorative Background */}
+			<div className="absolute inset-0 -z-10">
+				<div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-green-500/10 blur-3xl" />
+				<div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+			</div>
 
-				{/* We only render the subheading if it exists */}
+			<div className="container mx-auto px-6 text-center">
+				<motion.div
+					initial={{ opacity: 0, y: 30 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.6 }}
+				>
+					<h2 className="section-heading mb-6 text-foreground">{heading}</h2>
+				</motion.div>
+
 				{subheading && (
-					// FIXED: Use text-muted-foreground for the subheading text.
-					<p className="mx-auto mt-4 max-w-3xl font-sans text-lg text-muted-foreground md:text-xl">
+					<motion.p
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.6, delay: 0.2 }}
+						className="mx-auto mt-4 max-w-3xl text-lg text-muted-foreground md:text-xl"
+					>
 						{subheading}
-					</p>
+					</motion.p>
 				)}
 
-				{/* === THE MAGIC HAPPENS HERE === */}
-				<div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-					{buttons.map((button) => (
-						<Button
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.6, delay: 0.4 }}
+					className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+				>
+					{buttons.map((button, index) => (
+						<motion.div
 							key={button.href}
-							href={button.href}
-							// We pass the 'variant' prop to control the style
-							variant={button.primary ? 'primary' : 'secondary'}
-							className={
-								button.primary
-									? 'px-10 py-4 text-lg shadow-lg'
-									: 'px-10 py-4 text-lg'
-							}
+							initial={{ opacity: 0, scale: 0.8 }}
+							whileInView={{ opacity: 1, scale: 1 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
 						>
-							{button.text}
-						</Button>
+							<Button
+								href={button.href}
+								variant={button.primary ? 'primary' : 'secondary'}
+							>
+								{button.text}
+							</Button>
+						</motion.div>
 					))}
-				</div>
+				</motion.div>
 			</div>
 		</section>
 	);

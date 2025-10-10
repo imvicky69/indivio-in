@@ -1,14 +1,24 @@
 [
 	{
-		"id": "launch25",
-		"code": "LAUNCH25",
-		"title": "Launch Offer - 25% off",
-		"description": "Get 25% off your first year when you sign up during our launch period."
+		"id": "launch17",
+		"code": "LAUNCH17",
+		"title": "Launch Special - 17% Off",
+		"description": "Get 17% off on setup fees and first year maintenance when you sign up during our launch period.",
+		"discountPercent": 17,
+		"appliesTo": ["setup", "firstYear"],
+		"validUntil": "2025-12-31",
+		"active": true,
+		"badge": "17% OFF"
 	},
 	{
 		"id": "schools10",
 		"code": "SCHOOLS10",
 		"title": "School Partner - 10% off",
-		"description": "Partner schools receive a recurring 10% discount on annual plans."
+		"description": "Partner schools receive a recurring 10% discount on annual plans.",
+		"discountPercent": 10,
+		"appliesTo": ["annual"],
+		"validUntil": "2025-12-31",
+		"active": true,
+		"badge": "Partner Discount"
 	}
 ]

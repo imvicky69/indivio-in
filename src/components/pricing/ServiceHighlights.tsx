@@ -1,6 +1,7 @@
 'use client';
 
 import { Globe, Server, Gauge, Shield, Award, Code } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function ServiceHighlights() {
 	const highlights = [
@@ -42,29 +43,81 @@ export function ServiceHighlights() {
 		},
 	];
 
+	const containerVariants = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: {
+				duration: 0.6,
+				staggerChildren: 0.1,
+			},
+		},
+	};
+
+	const itemVariants = {
+		hidden: { opacity: 0, y: 30 },
+		visible: {
+			opacity: 1,
+			y: 0,
+			transition: {
+				duration: 0.6,
+			},
+		},
+	};
+
 	return (
-		<section className="bg-white py-16">
+		<section className="bg-card py-16">
 			<div className="container mx-auto px-6">
-				<div className="mb-12 text-center">
-					<h2 className="font-display text-3xl font-bold">All Plans Include</h2>
-					<p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+				<motion.div
+					initial={{ opacity: 0, y: 30 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.6 }}
+					className="mb-12 text-center"
+				>
+					<h2 className="font-display text-3xl font-bold text-foreground">
+						What&apos;s Included in Every Plan
+					</h2>
+					<p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
 						Every school website we build comes with these essential features
 						and services, regardless of which plan you choose.
 					</p>
-				</div>
+				</motion.div>
 
-				<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+				<motion.div
+					variants={containerVariants}
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true }}
+					className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+				>
 					{highlights.map((highlight, index) => (
-						<div
+						<motion.div
 							key={index}
-							className="rounded-lg border border-gray-100 bg-gray-50 p-6 transition-shadow hover:shadow-md"
+							variants={itemVariants}
+							whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+							className="rounded-lg border border-border bg-muted/50 p-6 transition-all duration-300 hover:border-primary/50 hover:shadow-lg"
 						>
-							<div className="mb-4">{highlight.icon}</div>
-							<h3 className="mb-2 text-xl font-semibold">{highlight.title}</h3>
-							<p className="text-gray-600">{highlight.description}</p>
-						</div>
+							<motion.div
+								initial={{ scale: 0 }}
+								whileInView={{ scale: 1 }}
+								viewport={{ once: true }}
+								transition={{
+									delay: 0.2 + index * 0.1,
+									type: 'spring',
+									stiffness: 200,
+								}}
+								className="mb-4"
+							>
+								{highlight.icon}
+							</motion.div>
+							<h3 className="mb-2 text-xl font-semibold text-foreground">
+								{highlight.title}
+							</h3>
+							<p className="text-muted-foreground">{highlight.description}</p>
+						</motion.div>
 					))}
-				</div>
+				</motion.div>
 			</div>
 		</section>
 	);

@@ -3,30 +3,41 @@ import type { Metadata } from 'next';
 import { PlatformBenefits } from '@/components//features/PlatformBenefits';
 import { FutureReady } from '@/components/features/FutureReady';
 import { CtaSection } from '@/components/ui/CtaSection';
-import { FeaturesHero } from '@/components/features/FeaturesHero'; // <-- Import the new component
-import { IncludedFeatures } from '@/components/features/IncludedFeatures'; // <-- Import the real component
+import { FeaturesHero } from '@/components/features/FeaturesHero';
+import { IncludedFeatures } from '@/components/features/IncludedFeatures';
+import { DetailedFeatureList } from '@/components/features/DetailedFeatureList';
+import { AdmissionBooster } from '@/components/features/AdmissionBooster';
+import { FeatureTestimonials } from '@/components/features/FeatureTestimonials';
+
 export const metadata: Metadata = {
-  title: 'Indivio :Modern School Website Features & Management Platform ',
-  description: "Discover Indivio's features. From dynamic toppers grids to easy content management, attract more admissions with a fast, secure, and affordable online presence.",
+	title: 'Indivio: Modern School Website Features & Management Platform',
+	description:
+		"Discover Indivio's comprehensive features. From dynamic toppers grids to easy content management, attract more admissions with a fast, secure, and affordable online presence for your school.",
+	keywords:
+		'school website features, school management system, school website platform, education website, school digital platform',
 };
 
 const featuresCtaProps = {
-  heading: 'Experience the Indivio Advantage Today!',
-  subheading: 'Join us in transforming education with our innovative solutions.',
-  buttons: [
-    { text: 'Get Started', href: '/signup', primary: true },
-    { text: 'Book a Free Demo', href: '/demo', primary: false },
-  ],
+	heading: 'Experience the Indivio Advantage Today!',
+	subheading:
+		'Join us in transforming education with our innovative solutions.',
+	buttons: [
+		{ text: 'View Pricing Plans', href: '/pricing', primary: true },
+		{ text: 'See Live Demo', href: 'https://demo.indivio.in', primary: false },
+	],
 };
 
 export default function FeaturesPage() {
-  return (
-    <>
-      <FeaturesHero /> {/* <-- Use the real component here */}
-      <IncludedFeatures />
-      <PlatformBenefits />
-      <FutureReady />
-      <CtaSection {...featuresCtaProps} />
-    </>
-  );
-} 
+	return (
+		<>
+			<FeaturesHero />
+			<IncludedFeatures />
+			<AdmissionBooster />
+			<DetailedFeatureList />
+			<FeatureTestimonials />
+			<PlatformBenefits />
+			<FutureReady />
+			<CtaSection {...featuresCtaProps} />
+		</>
+	);
+}

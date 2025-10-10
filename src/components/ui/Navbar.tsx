@@ -9,8 +9,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 export function Navbar() {
 	const navLinks = [
 		{ href: '/features', label: 'Features' },
-		{ href: '/pricing', label: 'Pricing' },
-		{ href: '/why-indivio', label: 'Why Indivio ?' },
+		{ href: '/pricing', label: 'Pricing & Plans' },
+		{ href: '/why-indivio', label: 'Why Indivio?' },
 		{ href: '/contact', label: 'Contact' },
 	];
 
@@ -43,8 +43,8 @@ export function Navbar() {
 		<header
 			className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
 				hasScrolled || isMenuOpen
-					? 'bg-background/80 shadow-lg backdrop-blur-sm'
-					: 'bg-transparent'
+					? 'bg-background/95 shadow-lg backdrop-blur-md'
+					: 'bg-background/70 backdrop-blur-sm'
 			}`}
 		>
 			<div className="container mx-auto flex items-center justify-between px-6 py-4">
@@ -59,22 +59,30 @@ export function Navbar() {
 						<Link
 							key={link.href}
 							href={link.href}
-							className={`text-foreground/80 transition-colors hover:text-foreground ${
+							className={`relative text-foreground/80 transition-colors hover:text-foreground ${
 								pathname === link.href ? 'font-semibold text-foreground' : ''
 							}`}
 						>
 							{link.label}
+							{link.href === '/pricing' && (
+								<span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center">
+									<span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+									<span className="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
+								</span>
+							)}
 						</Link>
 					))}
 				</nav>
 
 				{/* Desktop CTA Button */}
-				<Link
-					href="/booking"
-					className="hidden rounded-full bg-foreground px-5 py-2.5 text-center font-semibold text-background transition-all hover:bg-foreground/80 md:inline-block"
-				>
-					Book Now
-				</Link>
+				<div className="hidden items-center gap-3 md:flex">
+					<Link
+						href="/booking/professional"
+						className="rounded-full bg-primary px-6 py-2.5 text-center font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-lg"
+					>
+						Get Started
+					</Link>
+				</div>
 
 				{/* Mobile Menu Button */}
 				<button
@@ -105,16 +113,20 @@ export function Navbar() {
 								<Link
 									key={link.href}
 									href={link.href}
-									className="text-lg text-foreground/80 transition-colors hover:text-foreground"
+									className={`text-lg transition-colors hover:text-primary ${
+										pathname === link.href
+											? 'font-semibold text-primary'
+											: 'text-foreground/80'
+									}`}
 								>
 									{link.label}
 								</Link>
 							))}
 							<Link
-								href="/booking"
-								className="w-full max-w-xs rounded-full bg-primary px-5 py-3 text-center font-semibold text-primary-foreground transition-all hover:bg-primary/90"
+								href="/booking/professional"
+								className="w-full max-w-xs rounded-full bg-primary px-6 py-3 text-center font-semibold text-primary-foreground shadow-lg transition-all hover:bg-primary/90 hover:shadow-xl"
 							>
-								Book Now
+								Get Started
 							</Link>
 						</nav>
 					</motion.div>

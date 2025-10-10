@@ -2,6 +2,7 @@
 
 import { Plan } from '@/lib/plans';
 import { Check, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ComparisonTableProps {
 	plans: Plan[];
@@ -19,33 +20,33 @@ export function ComparisonTable({ plans }: ComparisonTableProps) {
 				{
 					name: 'Custom Pages',
 					values: {
-						'starter-site': '4-5 pages',
-						'growth-site': 'Up to 12 pages',
-						'enterprise-site': 'Unlimited',
+						basic: '4-5 pages',
+						advanced: 'Up to 12 pages',
+						business: 'Unlimited',
 					},
 				},
 				{
 					name: 'Mobile Responsive',
 					values: {
-						'starter-site': true,
-						'growth-site': true,
-						'enterprise-site': true,
+						basic: true,
+						advanced: true,
+						business: true,
 					},
 				},
 				{
 					name: 'CMS Dashboard',
 					values: {
-						'starter-site': 'Basic',
-						'growth-site': 'Advanced',
-						'enterprise-site': 'Full Featured',
+						basic: 'Basic',
+						advanced: 'Advanced',
+						business: 'Full Featured',
 					},
 				},
 				{
 					name: 'Custom Domain',
 					values: {
-						'starter-site': true,
-						'growth-site': true,
-						'enterprise-site': true,
+						basic: true,
+						advanced: true,
+						business: true,
 					},
 				},
 			],
@@ -56,33 +57,33 @@ export function ComparisonTable({ plans }: ComparisonTableProps) {
 				{
 					name: 'SEO Setup',
 					values: {
-						'starter-site': 'Basic',
-						'growth-site': 'Advanced',
-						'enterprise-site': 'Premium',
+						basic: 'Basic',
+						advanced: 'Advanced',
+						business: 'Premium',
 					},
 				},
 				{
 					name: 'Site Speed Optimization',
 					values: {
-						'starter-site': 'Standard',
-						'growth-site': 'Enhanced',
-						'enterprise-site': 'Maximum',
+						basic: 'Standard',
+						advanced: 'Enhanced',
+						business: 'Maximum',
 					},
 				},
 				{
 					name: 'Analytics Integration',
 					values: {
-						'starter-site': 'Basic',
-						'growth-site': 'Standard',
-						'enterprise-site': true,
+						basic: 'Basic',
+						advanced: 'Standard',
+						business: true,
 					},
 				},
 				{
 					name: 'Custom Metadata',
 					values: {
-						'starter-site': false,
-						'growth-site': true,
-						'enterprise-site': true,
+						basic: false,
+						advanced: true,
+						business: true,
 					},
 				},
 			],
@@ -93,33 +94,33 @@ export function ComparisonTable({ plans }: ComparisonTableProps) {
 				{
 					name: 'News/Blog Section',
 					values: {
-						'starter-site': 'Basic',
-						'growth-site': 'Advanced',
-						'enterprise-site': 'Full Featured',
+						basic: 'Basic',
+						advanced: 'Advanced',
+						business: 'Full Featured',
 					},
 				},
 				{
 					name: 'Downloads Section',
 					values: {
-						'starter-site': false,
-						'growth-site': true,
-						'enterprise-site': true,
+						basic: false,
+						advanced: true,
+						business: true,
 					},
 				},
 				{
 					name: 'Photo Galleries',
 					values: {
-						'starter-site': 'Simple',
-						'growth-site': 'Advanced',
-						'enterprise-site': 'Unlimited',
+						basic: 'Simple',
+						advanced: 'Advanced',
+						business: 'Unlimited',
 					},
 				},
 				{
 					name: 'Events Calendar',
 					values: {
-						'starter-site': false,
-						'growth-site': true,
-						'enterprise-site': true,
+						basic: false,
+						advanced: true,
+						business: true,
 					},
 				},
 			],
@@ -130,33 +131,33 @@ export function ComparisonTable({ plans }: ComparisonTableProps) {
 				{
 					name: 'Support Response',
 					values: {
-						'starter-site': 'Standard',
-						'growth-site': 'Priority',
-						'enterprise-site': 'Dedicated',
+						basic: 'Standard',
+						advanced: 'Priority',
+						business: 'Dedicated',
 					},
 				},
 				{
 					name: 'Site Reviews',
 					values: {
-						'starter-site': 'Annual',
-						'growth-site': 'Quarterly',
-						'enterprise-site': 'Monthly',
+						basic: 'Annual',
+						advanced: 'Quarterly',
+						business: 'Monthly',
 					},
 				},
 				{
 					name: 'Content Updates',
 					values: {
-						'starter-site': 'Self-service',
-						'growth-site': 'Self-service + Basic Support',
-						'enterprise-site': 'Full Support',
+						basic: 'Self-service',
+						advanced: 'Self-service + Basic Support',
+						business: 'Full Support',
 					},
 				},
 				{
 					name: 'Training',
 					values: {
-						'starter-site': 'Documentation',
-						'growth-site': 'Documentation + 1 Session',
-						'enterprise-site': 'Documentation + Multiple Sessions',
+						basic: 'Documentation',
+						advanced: 'Documentation + 1 Session',
+						business: 'Documentation + Multiple Sessions',
 					},
 				},
 			],
@@ -176,31 +177,45 @@ export function ComparisonTable({ plans }: ComparisonTableProps) {
 	};
 
 	return (
-		<section className="bg-gray-50 py-16">
+		<section className="bg-muted/30 py-16">
 			<div className="container mx-auto px-4">
-				<div className="mb-12 text-center">
-					<h2 className="mb-4 font-display text-3xl font-bold">
-						Compare Plans in Detail
+				<motion.div
+					initial={{ opacity: 0, y: 30 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.6 }}
+					className="mb-12 text-center"
+				>
+					<h2 className="mb-4 font-display text-3xl font-bold text-foreground">
+						Detailed Plan Comparison
 					</h2>
-					<p className="mx-auto max-w-2xl text-lg text-gray-600">
-						See exactly what each plan includes to find the perfect fit for your
-						school&apos;s website needs.
+					<p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+						Compare features side-by-side to choose the best plan for your
+						school.
 					</p>
-				</div>
+				</motion.div>
 
-				<div className="overflow-x-auto">
-					<table className="w-full rounded-lg border border-gray-200 bg-white shadow-sm">
+				<motion.div
+					initial={{ opacity: 0, scale: 0.95 }}
+					whileInView={{ opacity: 1, scale: 1 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.6, delay: 0.2 }}
+					className="overflow-x-auto"
+				>
+					<table className="w-full rounded-lg border border-border bg-card shadow-lg">
 						<thead>
-							<tr className="bg-gray-100">
-								<th className="w-1/4 px-4 py-4 text-left font-medium text-gray-700">
+							<tr className="bg-muted">
+								<th className="w-1/4 px-4 py-4 text-left font-medium text-foreground">
 									Features
 								</th>
 								{sortedPlans.map((plan) => (
 									<th
 										key={plan.id}
-										className={`px-4 py-4 text-center ${plan.isMostPopular ? 'bg-primary/10' : ''}`}
+										className={`px-4 py-4 text-center transition-colors duration-300 ${
+											plan.isMostPopular ? 'bg-primary/10 text-primary' : ''
+										}`}
 									>
-										<span className="block text-lg font-bold text-gray-800">
+										<span className="block text-lg font-bold text-foreground">
 											{plan.name}
 										</span>
 									</th>
@@ -209,45 +224,49 @@ export function ComparisonTable({ plans }: ComparisonTableProps) {
 						</thead>
 						<tbody>
 							{comparisonData.map((category, index) => (
-								<>
-									<tr
-										key={`category-${index}`}
-										className="border-t border-gray-200 bg-gray-50"
+								<tr
+									key={`category-${index}`}
+									className="border-t border-border bg-muted/50"
+								>
+									<td
+										colSpan={sortedPlans.length + 1}
+										className="px-4 py-3 font-semibold text-foreground"
 									>
-										<td
-											colSpan={sortedPlans.length + 1}
-											className="px-4 py-3 font-semibold text-gray-800"
-										>
-											{category.category}
-										</td>
-									</tr>
-									{category.features.map((feature, fidx) => (
-										<tr
-											key={`feature-${index}-${fidx}`}
-											className={`border-t border-gray-200 ${fidx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}
-										>
-											<td className="px-4 py-3 text-gray-700">
-												{feature.name}
-											</td>
-											{sortedPlans.map((plan) => (
-												<td
-													key={`${plan.id}-${feature.name}`}
-													className={`px-4 py-3 text-center ${plan.isMostPopular ? 'bg-primary/5' : ''}`}
-												>
-													{renderCellValue(
-														feature.values[
-															plan.id as keyof typeof feature.values
-														]
-													)}
-												</td>
-											))}
-										</tr>
-									))}
-								</>
+										{category.category}
+									</td>
+								</tr>
 							))}
+							{comparisonData.map((category, categoryIndex) =>
+								category.features.map((feature, featureIndex) => (
+									<tr
+										key={`feature-${categoryIndex}-${featureIndex}`}
+										className={`border-t border-border transition-colors duration-300 hover:bg-muted/30 ${
+											featureIndex % 2 === 0 ? 'bg-card' : 'bg-muted/20'
+										}`}
+									>
+										<td className="px-4 py-3 text-foreground">
+											{feature.name}
+										</td>
+										{sortedPlans.map((plan) => (
+											<td
+												key={`${plan.id}-${feature.name}`}
+												className={`px-4 py-3 text-center transition-colors duration-300 ${
+													plan.isMostPopular
+														? 'bg-primary/5 hover:bg-primary/10'
+														: 'hover:bg-muted/50'
+												}`}
+											>
+												{renderCellValue(
+													feature.values[plan.id as keyof typeof feature.values]
+												)}
+											</td>
+										))}
+									</tr>
+								))
+							)}
 						</tbody>
 					</table>
-				</div>
+				</motion.div>
 			</div>
 		</section>
 	);

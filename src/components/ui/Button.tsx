@@ -2,42 +2,36 @@
 import React from 'react';
 import Link from 'next/link';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/lib/utils'; // <-- Import our new utility
+import { cn } from '@/lib/utils';
 
-// 1. Define button variants with CVA
 const buttonVariants = cva(
-	// Base styles applied to all variants
-	'inline-block px-8 py-3 font-medium rounded-full transition-all duration-300 ease-in-out w-full sm:w-auto text-center transform hover:-translate-y-1',
+	'inline-flex items-center justify-center px-8 py-3.5 font-semibold rounded-full transition-all duration-300 ease-in-out w-full sm:w-auto text-center transform hover:-translate-y-0.5 active:translate-y-0',
 	{
 		variants: {
 			variant: {
-				// Variant-specific styles
-				primary: 'bg-black text-white hover:bg-gray-800 shadow-lg',
-				secondary: 'text-gray-800 border border-gray-300 hover:bg-gray-50',
+				primary:
+					'bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl',
+				secondary:
+					'bg-background text-foreground border-2 border-border hover:bg-muted hover:border-primary/30 shadow-md hover:shadow-lg',
 				accent:
-					'bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg',
+					'bg-green-600 text-white hover:bg-green-700 shadow-lg hover:shadow-xl',
 			},
 		},
 		defaultVariants: {
-			variant: 'primary', // Default variant is 'primary'
+			variant: 'primary',
 		},
 	}
 );
 
-// 2. Define props, extending the CVA variants
 export interface ButtonProps
 	extends React.ComponentProps<typeof Link>,
-		VariantProps<typeof buttonVariants> {
-	// No need to define 'variant' again, it's inherited from VariantProps
-}
+		VariantProps<typeof buttonVariants> {}
 
-// 3. Create the component
 const Button = React.forwardRef<HTMLAnchorElement, ButtonProps>(
 	({ className, variant, ...props }, ref) => {
 		return (
 			<Link
 				ref={ref}
-				// 4. Use the `cn` utility to merge classes perfectly
 				className={cn(buttonVariants({ variant, className }))}
 				{...props}
 			/>

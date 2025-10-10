@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface FAQ {
 	question: string;
@@ -15,7 +16,22 @@ export function PricingFAQ() {
 		{
 			question: 'How is pricing structured for school websites?',
 			answer:
-				'Our pricing has two components: a one-time setup fee to design and build your custom website, and an annual fee that covers hosting, maintenance, security updates, and support. The annual fee is typically around half of the initial setup cost.',
+				'Our pricing has two components: a one-time setup fee to design and build your custom website, and an annual maintenance fee that covers hosting, security updates, and support. From year 2 onwards, the annual renewal price is typically lower as the initial development work is complete.',
+		},
+		{
+			question: 'What happens after the first year?',
+			answer:
+				'After the first year, you pay a reduced annual renewal fee (shown for each plan) which covers ongoing hosting, security updates, technical support, and maintenance. There are no surprises—the renewal price is clearly stated upfront.',
+		},
+		{
+			question: 'Can I use my own domain name?',
+			answer:
+				'Absolutely! All plans support custom domains. The Starter plan has a small additional fee for domain setup, while Professional and Enterprise plans include FREE custom domain setup. You can either use an existing domain or we can help you register a new one.',
+		},
+		{
+			question: 'What are the add-ons and how do they work?',
+			answer:
+				'Add-ons are optional premium features like custom domain setup and bespoke design. Availability and pricing vary by plan—some include these FREE while others offer them at an additional cost. Check each plan for specific details.',
 		},
 		{
 			question: 'Can I upgrade my plan later?',
@@ -25,22 +41,27 @@ export function PricingFAQ() {
 		{
 			question: 'Are there any hidden costs?',
 			answer:
-				"No hidden costs. The prices you see include everything needed for your school website. The only potential additional cost would be if you request custom features beyond what's included in your chosen plan.",
-		},
-		{
-			question: 'Do I need to purchase a domain name separately?',
-			answer:
-				'You can either use your existing domain or we can help you purchase and set up a new one (additional domain registration fees may apply, typically ₹800-1500/year depending on the domain type).',
+				"No hidden costs. The prices you see include everything needed for your school website. The only potential additional costs would be optional add-ons you choose or custom features beyond what's included in your plan.",
 		},
 		{
 			question: 'How long does it take to build my school website?',
 			answer:
-				'The Starter Site typically takes 2-3 weeks, Growth Site 3-4 weeks, and Enterprise Site 4-6 weeks, depending on content readiness and feedback cycles.',
+				'The Starter plan typically takes 2-3 weeks, Professional plan 3-4 weeks, and Enterprise plan 4-6 weeks, depending on content readiness and feedback cycles. We provide a detailed timeline during onboarding.',
 		},
 		{
 			question: 'What happens if I need help after the website launches?',
 			answer:
-				'All plans include different levels of ongoing support. For technical issues, security, and hosting-related matters, we provide support for all plans. Content updates are handled through your dashboard, with varying levels of assistance depending on your plan.',
+				'All plans include ongoing support. For technical issues, security, and hosting-related matters, we provide email support for Starter, priority support for Professional, and 24/7 dedicated support for Enterprise. Content updates are handled through your easy-to-use dashboard.',
+		},
+		{
+			question: 'What payment methods do you accept?',
+			answer:
+				'We accept bank transfers, UPI, credit/debit cards, and can also accommodate purchase orders for institutional payments. Payment terms can be discussed during the consultation.',
+		},
+		{
+			question: 'Do you offer refunds?',
+			answer:
+				"We offer a satisfaction guarantee. If you're not happy with the initial design concepts within the first 2 weeks, we'll provide a full refund of your setup fee. After development begins, refunds are prorated based on work completed.",
 		},
 	];
 
@@ -48,44 +69,96 @@ export function PricingFAQ() {
 		setOpenIndex(openIndex === index ? null : index);
 	};
 
+	const containerVariants = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: {
+				duration: 0.6,
+				staggerChildren: 0.1,
+			},
+		},
+	};
+
+	const itemVariants = {
+		hidden: { opacity: 0, y: 20 },
+		visible: {
+			opacity: 1,
+			y: 0,
+			transition: {
+				duration: 0.4,
+			},
+		},
+	};
+
 	return (
-		<section className="bg-white py-16">
+		<section className="bg-card py-16">
 			<div className="container mx-auto px-6">
-				<div className="mb-12 text-center">
-					<h2 className="font-display text-3xl font-bold">
+				<motion.div
+					initial={{ opacity: 0, y: 30 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.6 }}
+					className="mb-12 text-center"
+				>
+					<h2 className="font-display text-3xl font-bold text-foreground">
 						Frequently Asked Questions
 					</h2>
-					<p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-						Got questions about our school website pricing? We&apos;ve got
-						answers.
+					<p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+						Everything you need to know about our pricing, plans, and process.
 					</p>
-				</div>
+				</motion.div>
 
-				<div className="mx-auto max-w-3xl">
+				<motion.div
+					variants={containerVariants}
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true }}
+					className="mx-auto max-w-3xl"
+				>
 					{faqs.map((faq, index) => (
-						<div key={index} className="mb-4">
-							<button
+						<motion.div key={index} variants={itemVariants} className="mb-4">
+							<motion.button
+								whileHover={{ scale: 1.01 }}
+								whileTap={{ scale: 0.99 }}
 								onClick={() => toggleFAQ(index)}
-								className={`flex w-full items-center justify-between rounded-lg p-5 text-left ${
-									openIndex === index ? 'bg-primary/10' : 'bg-gray-50'
-								} transition-colors hover:bg-primary/5`}
+								className={`flex w-full items-center justify-between rounded-lg p-5 text-left transition-all duration-300 ${
+									openIndex === index
+										? 'border-primary/20 bg-primary/10 shadow-md'
+										: 'bg-muted/50 hover:bg-muted'
+								} border border-border`}
 							>
-								<span className="text-lg font-medium">{faq.question}</span>
-								{openIndex === index ? (
-									<ChevronUp className="h-5 w-5 flex-shrink-0" />
-								) : (
-									<ChevronDown className="h-5 w-5 flex-shrink-0" />
-								)}
-							</button>
+								<span className="text-lg font-medium text-foreground">
+									{faq.question}
+								</span>
+								<motion.div
+									animate={{ rotate: openIndex === index ? 180 : 0 }}
+									transition={{ duration: 0.3 }}
+								>
+									{openIndex === index ? (
+										<ChevronUp className="h-5 w-5 flex-shrink-0 text-primary" />
+									) : (
+										<ChevronDown className="h-5 w-5 flex-shrink-0 text-muted-foreground" />
+									)}
+								</motion.div>
+							</motion.button>
 
-							{openIndex === index && (
-								<div className="mt-1 rounded-b-lg border border-gray-100 bg-white p-5">
-									<p className="text-gray-600">{faq.answer}</p>
-								</div>
-							)}
-						</div>
+							<AnimatePresence>
+								{openIndex === index && (
+									<motion.div
+										initial={{ opacity: 0, height: 0 }}
+										animate={{ opacity: 1, height: 'auto' }}
+										exit={{ opacity: 0, height: 0 }}
+										transition={{ duration: 0.3 }}
+										className="mt-1 rounded-b-lg border border-border bg-card p-5 shadow-sm"
+									>
+										<p className="text-muted-foreground">{faq.answer}</p>
+									</motion.div>
+								)}
+							</AnimatePresence>
+						</motion.div>
 					))}
-				</div>
+				</motion.div>
 			</div>
 		</section>
 	);

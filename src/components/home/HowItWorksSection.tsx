@@ -1,69 +1,91 @@
-// src/components/HowItWorksSection.tsx
+// src/components/home/HowItWorksSection.tsx
+'use client';
+
 import React from 'react';
 import { SectionHeading } from '../SectionHeading';
 import { ClipboardCheck, ServerCog, Rocket, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-// Define the steps in a data array for clean, scalable code
 const stepsData = [
-  {
-    icon: <ClipboardCheck className="h-12 w-12 text-primary" />,
-    title: 'Choose Your Plan',
-    description:
-      'Go to the booking page and book your preferred plan by paying the half amount.',
-  },
-  {
-    icon: <ServerCog className="h-12 w-12 text-primary" />,
-    title: 'We Handle the Full Setup',
-    description:
-      'We start your project setup, design, code, and everything else — completely hassle-free.',
-  },
-  {
-    icon: <Rocket className="h-12 w-12 text-primary" />,
-    title: 'Go Live & Manage with Ease',
-    description:
-      'Make the remaining payment and get your InDashboard to access and manage your page changes.',
-  },
+	{
+		icon: ClipboardCheck,
+		title: 'Choose Your Plan',
+		description:
+			'Go to the pricing page and book your preferred plan by paying the advance amount.',
+	},
+	{
+		icon: ServerCog,
+		title: 'We Handle the Full Setup',
+		description:
+			'We start your project setup, design, code, and everything else — completely hassle-free.',
+	},
+	{
+		icon: Rocket,
+		title: 'Go Live & Manage with Ease',
+		description:
+			'Make the remaining payment and get your InDashboard to access and manage your page changes.',
+	},
 ];
 
 export function HowItWorksSection() {
-  return (
-    <section className="bg-hero-gradient py-20 sm:py-28">
-      <div className="container mx-auto px-6">
-        <SectionHeading>How It Works</SectionHeading>
+	return (
+		<section className="section-padding bg-background">
+			<div className="container mx-auto px-6">
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.6 }}
+				>
+					<SectionHeading>How It Works</SectionHeading>
+				</motion.div>
 
-        {/* 
-          This is the main container for the steps.
-          - On mobile: It's a flex-col with gaps for vertical stacking.
-          - On desktop (lg): It becomes a flex-row to lay them out horizontally.
-        */}
-        <div className="flex flex-col items-center justify-center gap-y-12 lg:flex-row lg:gap-x-8">
-          {stepsData.map((step, index) => (
-            // Use React.Fragment to group each step with its following arrow
-            <React.Fragment key={index}>
-              {/* The Step Card */}
-              <div className="flex max-w-xs flex-col items-center text-center">
-                <div className="mb-4">{step.icon}</div>
-                <h3 className="text-dark mb-2 font-display text-xl font-bold">
-                  {step.title}
-                </h3>
-                <p className="text-dark/70">{step.description}</p>
-              </div>
+				<div className="mt-16 flex flex-col items-center justify-center gap-y-12 lg:flex-row lg:gap-x-12">
+					{stepsData.map((step, index) => {
+						const IconComponent = step.icon;
+						return (
+							<React.Fragment key={index}>
+								<motion.div
+									initial={{ opacity: 0, scale: 0.9 }}
+									whileInView={{ opacity: 1, scale: 1 }}
+									viewport={{ once: true }}
+									transition={{ duration: 0.5, delay: index * 0.2 }}
+									className="flex max-w-xs flex-col items-center text-center"
+								>
+									{/* Step Number Badge */}
+									<div className="relative mb-6">
+										<div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/5 backdrop-blur-sm transition-all duration-300 hover:bg-primary/10">
+											<IconComponent className="h-10 w-10 text-primary" />
+										</div>
+										<div className="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+											{index + 1}
+										</div>
+									</div>
 
-              {/* 
-                The Arrow Connector
-                - It only shows if it's NOT the last item in the array.
-                - It is hidden on mobile and appears on desktop (lg:flex).
-              */}
-              {index < stepsData.length - 1 && (
-                <div className="mx-4 hidden items-center text-slate-300 lg:flex">
-                  <span className="text-2xl tracking-[-3px]">-----------</span>
-                  <ArrowRight className="h-8 w-8 flex-shrink-0" />
-                </div>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+									<h3 className="mb-3 font-display text-xl font-bold text-foreground">
+										{step.title}
+									</h3>
+									<p className="leading-relaxed text-muted-foreground">
+										{step.description}
+									</p>
+								</motion.div>
+
+								{index < stepsData.length - 1 && (
+									<motion.div
+										initial={{ opacity: 0, x: -20 }}
+										whileInView={{ opacity: 1, x: 0 }}
+										viewport={{ once: true }}
+										transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
+										className="hidden items-center text-muted-foreground/30 lg:flex"
+									>
+										<ArrowRight className="h-8 w-8 flex-shrink-0" />
+									</motion.div>
+								)}
+							</React.Fragment>
+						);
+					})}
+				</div>
+			</div>
+		</section>
+	);
 }

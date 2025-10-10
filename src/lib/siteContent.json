@@ -1,15 +1,67 @@
 {
 	"pricing": {
-		"heroTitle": "Website Solutions for Schools — Simple, Fast, Reliable",
-		"heroSubtitle": "We build, host, and hand you a dashboard to manage your school's website. No headaches, just results.",
-		"ctaPrimary": "Book Now",
-		"ctaSecondary": "Know More",
-		"sectionIntro": "Choose a website plan tailored for schools — each plan includes hosting, SSL, and an easy-to-use content dashboard. Upgrades and custom options available.",
+		"heroTitle": "Professional Educational Websites That Make an Impact",
+		"heroSubtitle": "Transparent pricing. Everything included. No hidden costs. Choose the perfect plan for your educational institution.",
+		"ctaPrimary": "Get Started",
+		"ctaSecondary": "View Details",
+		"sectionIntro": "Every plan includes professional design, hosting, security, and support. Scale as you grow with flexible pricing tailored for educational institutions.",
 		"offerBanner": {
-			"enabled": true,
-			"text": "Launch Offer: 25% off the one-time setup fee — limited time! Use code LAUNCH25",
+			"enabled": false,
+			"text": "🎉 Launch Offer: 25% off setup fees for a limited time! Use code LAUNCH25",
 			"discountPercent": 25,
 			"appliesTo": "setup"
-		}
+		},
+		"serviceHighlights": [
+			{
+				"title": "Everything Included",
+				"description": "Hosting, SSL, security, updates, and support—all in one transparent price.",
+				"icon": "package"
+			},
+			{
+				"title": "No Hidden Costs",
+				"description": "What you see is what you pay. Simple setup fee + annual maintenance.",
+				"icon": "receipt"
+			},
+			{
+				"title": "Easy Management",
+				"description": "User-friendly dashboard to update content, images, and news without technical skills.",
+				"icon": "settings"
+			},
+			{
+				"title": "Scalable Plans",
+				"description": "Start small and upgrade as your institution grows. We'll credit your original setup fee.",
+				"icon": "trending-up"
+			}
+		],
+		"whatsIncluded": {
+			"title": "What's Included in Every Plan",
+			"subtitle": "Professional features without the enterprise price tag",
+			"items": [
+				"Mobile-responsive design that looks great on all devices",
+				"Secure HTTPS with SSL certificate included",
+				"Fast, reliable hosting with 99.9% uptime guarantee",
+				"Content management dashboard for easy updates",
+				"Contact forms with email notifications",
+				"Basic SEO optimization for better visibility",
+				"Regular security updates and patches",
+				"Professional email support"
+			]
+		},
+		"addOnsSection": {
+			"title": "Optional Add-Ons",
+			"subtitle": "Enhance your website with these premium features",
+			"description": "All plans can be customized with additional services based on your needs."
+		},
+		"faq": {
+			"title": "Frequently Asked Questions",
+			"subtitle": "Everything you need to know about our pricing and services"
+		},
+		"comparisonIntro": "Compare plans side-by-side to find the perfect fit for your educational institution",
+		"trustBadges": [
+			"99.9% Uptime Guarantee",
+			"Secure & Encrypted",
+			"24/7 Monitoring",
+			"Regular Backups"
+		]
 	}
 }

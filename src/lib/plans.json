@@ -1,53 +1,167 @@
 [
 	{
-		"id": "starter-site",
-		"name": "Starter Site",
+		"id": "starter",
+		"name": "Starter",
 		"setupFee": 12000,
+		"renewalPrice": 6000,
 		"price": 3500,
-		"pricePeriod": " / year",
-		"short": "A simple, elegant school website (4-5 pages) + CMS dashboard.",
-		"description": "Perfect for small schools that need a professional web presence quickly. Includes hosting, SSL, and a content dashboard for easy updates.",
+		"pricePeriod": "/year",
+		"tagline": "Perfect for small schools starting their digital journey",
+		"short": "A simple, elegant school website (4-5 pages) with CMS dashboard for easy content management.",
+		"description": "Ideal for small schools that need a professional online presence without complexity. Get a beautiful, functional website with all the essentials included.",
 		"isMostPopular": false,
 		"features": [
 			"4-5 custom pages (Home, About, Admissions, Contact, News)",
-			"Admin dashboard to edit content & images",
-			"Hassle-free hosting & SSL",
-			"Basic SEO setup & site map"
+			"Responsive mobile-first design",
+			"Admin dashboard for content & image management",
+			"Contact form with email notifications",
+			"Google Maps integration",
+			"Social media integration",
+			"Basic SEO setup & sitemap generation",
+			"SSL certificate & security",
+			"Fast, reliable hosting",
+			"Email support (48hr response time)"
 		],
+		"included": {
+			"hosting": "Shared hosting with 99.9% uptime",
+			"deployment": "Standard deployment to subdomain",
+			"ssl": "Free SSL certificate",
+			"support": "Email support",
+			"updates": "Quarterly security updates"
+		},
+		"addOns": {
+			"customDomain": {
+				"available": true,
+				"price": 1500,
+				"description": "Use your own custom domain (e.g., www.yourschool.com)"
+			},
+			"customDesign": {
+				"available": false,
+				"price": null,
+				"description": "Template-based design included"
+			}
+		},
+		"bestFor": [
+			"Small schools and Institutions",
+			"Schools needing a basic online presence",
+			"Schools with limited budgets",
+			"Quick launch requirements"
+		],
+		"deliveryTime": "3-5 Days",
 		"order": 1
 	},
 	{
-		"id": "growth-site",
-		"name": "Growth Site",
-		"setupFee": 20000,
+		"id": "professional",
+		"name": "Professional",
+		"setupFee": 25000,
+		"renewalPrice": 10000,
 		"price": 5500,
-		"pricePeriod": " / year",
-		"short": "More pages, SEO optimization and downloadable resources.",
-		"description": "For growing schools that want better visibility and student resources. Includes advanced SEO, notices, and downloadable pages.",
+		"pricePeriod": "/year",
+		"badge": "Most Popular",
+		"tagline": "Everything you need for a growing school",
+		"short": "More pages, advanced SEO, and downloadable resources for schools that want to stand out.",
+		"description": "Perfect for growing schools that need enhanced visibility, better user experience, and additional features like notice boards and resource downloads.",
 		"isMostPopular": true,
 		"features": [
-			"Up to 12 pages with custom layouts",
-			"Advanced SEO and metadata optimization",
-			"Notices & downloadable resources pages",
-			"Priority support and quarterly reviews"
+			"Up to 12 custom pages with flexible layouts",
+			"All Starter features included",
+			"Advanced SEO & metadata optimization",
+			"Notice board & announcements system",
+			"Downloadable resources section (PDFs, forms)",
+			"Photo gallery with albums",
+			"Event calendar integration",
+			"Newsletter signup integration",
+			"Enhanced mobile experience",
+			"Priority email & chat support (24hr response)",
+			"Monthly performance reports",
+			"Quarterly content review sessions"
 		],
+		"included": {
+			"hosting": "Enhanced hosting with CDN",
+			"deployment": "Custom domain deployment included",
+			"ssl": "Premium SSL certificate",
+			"support": "Priority email & chat support",
+			"updates": "Monthly security & feature updates"
+		},
+		"addOns": {
+			"customDomain": {
+				"available": true,
+				"price": 0,
+				"description": "Custom domain setup included FREE"
+			},
+			"customDesign": {
+				"available": true,
+				"price": 5000,
+				"description": "Fully custom, bespoke design tailored to your brand"
+			}
+		},
+		"bestFor": [
+			"Growing schools with 500-2000 students",
+			"Schools wanting better online visibility",
+			"Schools needing resource management",
+			"Schools with active communication needs"
+		],
+		"deliveryTime": "1-3 weeks",
 		"order": 2
 	},
 	{
-		"id": "enterprise-site",
-		"name": "Enterprise Site",
+		"id": "enterprise",
+		"name": "Enterprise",
 		"setupFee": 35000,
+		"renewalPrice": 18000,
 		"price": 25000,
-		"pricePeriod": " / year",
-		"short": "Custom repo, dedicated deployment, high-SEO and bespoke design.",
-		"description": "Tailored solutions for large institutions: custom design, repo access, on-prem or cloud deployment support, and premium SEO & performance tuning.",
+		"pricePeriod": "/year",
+		"badge": "Premium",
+		"tagline": "Enterprise-grade solution for large institutions",
+		"short": "Custom repository, dedicated deployment, premium SEO, and bespoke design for institutions that demand excellence.",
+		"description": "Tailored for large educational institutions requiring custom solutions, dedicated infrastructure, advanced integrations, and premium support with full control over their digital presence.",
 		"isMostPopular": false,
 		"features": [
-			"Custom repo + deployment to your domain",
-			"High-performance hosting & CDN",
-			"Dedicated design & UX improvements",
-			"Advanced SEO, analytics & integration"
+			"Unlimited custom pages & sections",
+			"All Professional features included",
+			"Custom GitHub repository access",
+			"Dedicated server deployment",
+			"Bespoke UI/UX design process",
+			"Advanced analytics & tracking setup",
+			"Third-party integrations (ERP, LMS, payment gateways)",
+			"Multi-language support",
+			"Advanced admin roles & permissions",
+			"Student/parent portal (optional)",
+			"Admission form with payment integration",
+			"Dedicated account manager",
+			"24/7 priority support (4hr response)",
+			"Bi-weekly strategic reviews",
+			"Custom feature development"
 		],
+		"included": {
+			"hosting": "Dedicated hosting with premium CDN",
+			"deployment": "Custom domain with scalable infrastructure",
+			"ssl": "Premium SSL with extended validation",
+			"support": "24/7 dedicated support team",
+			"updates": "Weekly updates & continuous monitoring",
+			"bandwidth": "Unlimited bandwidth",
+			"storage": "100GB SSD storage (expandable)"
+		},
+		"addOns": {
+			"customDomain": {
+				"available": true,
+				"price": 0,
+				"description": "Custom domain setup & DNS management included FREE"
+			},
+			"customDesign": {
+				"available": true,
+				"price": 0,
+				"description": "Fully bespoke design & branding included FREE"
+			}
+		},
+		"bestFor": [
+			"Large schools with 2000+ students",
+			"Multi-campus institutions",
+			"Schools requiring custom integrations",
+			"Institutions with complex requirements",
+			"Schools wanting full control & scalability"
+		],
+		"deliveryTime": "4-6 weeks",
 		"order": 3
 	}
 ]

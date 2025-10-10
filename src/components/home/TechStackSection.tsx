@@ -1,12 +1,14 @@
-// src/components/TechStackSection.tsx
+// src/components/home/TechStackSection.tsx
+'use client';
+
 import Image from 'next/image';
 import { SectionHeading } from '../SectionHeading';
 import { Lock } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const techData = [
 	{
 		name: 'React',
-		// use optimized next/image served from public/
 		icon: (
 			<div className="flex h-12 w-12 items-center justify-center">
 				<Image
@@ -52,7 +54,6 @@ const techData = [
 	},
 	{
 		name: 'Google Cloud',
-		// Use Next.js Image for optimization
 		icon: (
 			<div className="flex h-12 w-12 items-center justify-center">
 				<Image
@@ -68,7 +69,7 @@ const techData = [
 	},
 	{
 		name: 'Secured API',
-		icon: <Lock className="h-12 w-12 text-slate-500" />,
+		icon: <Lock className="h-12 w-12 text-primary" />,
 		power: 'Protects all data communication with modern security.',
 	},
 ];
@@ -77,48 +78,49 @@ export function TechStackSection() {
 	return (
 		<section>
 			{/* Top part with the heading */}
-			<div className="bg-hero-gradient pb-16 pt-20">
+			<div className="section-padding bg-gradient-to-b from-background to-muted/30">
 				<div className="container mx-auto px-6 text-center">
-					<SectionHeading>Built by Modern Technology</SectionHeading>
-					<p className="text-dark/70 mx-auto max-w-2xl text-lg">
+					<SectionHeading>Built with Modern Technology</SectionHeading>
+					<motion.p
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.6 }}
+						className="mx-auto max-w-2xl text-lg text-muted-foreground"
+					>
 						We use industry-leading frameworks and infrastructure to build fast,
 						scalable, and secure solutions.
-					</p>
+					</motion.p>
 				</div>
 			</div>
 
 			{/* Bottom part with the tech logos */}
-			<div className="bg-white py-16">
+			<div className="bg-background py-16">
 				<div className="container mx-auto px-6">
 					<div className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 md:grid-cols-5">
-						{techData.map((tech) => (
-							<div
+						{techData.map((tech, index) => (
+							<motion.div
 								key={tech.name}
+								initial={{ opacity: 0, y: 20 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true }}
+								transition={{ duration: 0.5, delay: index * 0.1 }}
+								whileHover={{ scale: 1.1 }}
 								className="group relative flex flex-col items-center gap-3"
 							>
 								{/* Icon */}
-								<div className="transition-transform duration-300 group-hover:scale-110">
+								<div className="rounded-xl bg-muted/50 p-4 transition-all duration-300 group-hover:bg-primary/10 group-hover:shadow-lg">
 									{tech.icon}
 								</div>
 								{/* Name */}
-								<span className="text-dark/80 font-medium">{tech.name}</span>
+								<span className="font-medium text-foreground">{tech.name}</span>
 								{/* Hover Tooltip (the "power") */}
-								<div className="bg-dark text-light pointer-events-none absolute -top-14 w-max rounded-md p-2 px-3 text-sm opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+								<div className="pointer-events-none absolute -top-20 z-10 w-max max-w-xs rounded-lg border border-border bg-card p-3 text-sm text-foreground opacity-0 shadow-xl transition-opacity duration-300 group-hover:opacity-100">
 									{tech.power}
 									{/* Tooltip Arrow */}
-									<svg
-										className="text-dark absolute left-0 top-full h-2 w-full"
-										x="0px"
-										y="0px"
-										viewBox="0 0 255 255"
-									>
-										<polygon
-											className="fill-current"
-											points="0,0 127.5,127.5 255,0"
-										/>
-									</svg>
+									<div className="absolute left-1/2 top-full h-0 w-0 -translate-x-1/2 border-8 border-transparent border-t-card"></div>
 								</div>
-							</div>
+							</motion.div>
 						))}
 					</div>
 				</div>

@@ -55,18 +55,19 @@ export function TestimonialSection() {
 	};
 
 	return (
-		<section className="bg-gray-50 py-16">
+		<section className="bg-muted py-16">
 			<div className="container mx-auto px-6">
 				<div className="mb-12 text-center">
-					<h2 className="font-display text-3xl font-bold">What Schools Say</h2>
-					<p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-						Hear from education leaders who&apos;ve transformed their online
-						presence with our website solutions.
+					<h2 className="font-display text-3xl font-bold text-foreground">
+						Trusted by Schools Across India
+					</h2>
+					<p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+						See what educational leaders say about our website solutions.
 					</p>
 				</div>
 
 				<div className="relative mx-auto max-w-4xl">
-					<div className="rounded-xl bg-white p-8 shadow-lg md:p-12">
+					<div className="rounded-xl bg-card p-8 shadow-lg md:p-12">
 						<div className="absolute left-8 top-8 opacity-20">
 							<Quote className="h-16 w-16 text-primary" />
 						</div>
@@ -85,10 +86,10 @@ export function TestimonialSection() {
 									className="mr-4 h-16 w-16 rounded-full object-cover"
 								/>
 								<div>
-									<div className="text-lg font-bold">
+									<div className="text-lg font-bold text-foreground">
 										{testimonials[currentIndex].name}
 									</div>
-									<div className="text-gray-600">
+									<div className="text-muted-foreground">
 										{testimonials[currentIndex].role}
 									</div>
 									<div className="font-medium text-primary">
@@ -102,7 +103,7 @@ export function TestimonialSection() {
 					<div className="mt-8 flex justify-center gap-4">
 						<button
 							onClick={prevTestimonial}
-							className="rounded-full bg-white p-2 shadow hover:bg-gray-100"
+							className="rounded-full bg-card p-2 shadow hover:bg-muted"
 							aria-label="Previous testimonial"
 						>
 							<ChevronLeft className="h-5 w-5" />
@@ -113,7 +114,7 @@ export function TestimonialSection() {
 								key={index}
 								onClick={() => setCurrentIndex(index)}
 								className={`h-3 w-3 rounded-full ${
-									currentIndex === index ? 'bg-primary' : 'bg-gray-300'
+									currentIndex === index ? 'bg-primary' : 'bg-muted-foreground'
 								}`}
 								aria-label={`Go to testimonial ${index + 1}`}
 							/>
@@ -121,7 +122,7 @@ export function TestimonialSection() {
 
 						<button
 							onClick={nextTestimonial}
-							className="rounded-full bg-white p-2 shadow hover:bg-gray-100"
+							className="rounded-full bg-card p-2 shadow hover:bg-muted"
 							aria-label="Next testimonial"
 						>
 							<ChevronRight className="h-5 w-5" />

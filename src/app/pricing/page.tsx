@@ -1,44 +1,41 @@
 import type { Metadata } from 'next';
-import { getPricingPlans } from '@/lib/plans';
+import { getPricingPlans, getOffers } from '@/lib/plans';
 import siteContent from '@/lib/siteContent';
-import { PricingSection } from '@/components/pricing/PricingSection';
-import { ServiceHighlights } from '@/components/pricing/ServiceHighlights';
-import { ComparisonTable } from '@/components/pricing/ComparisonTable';
+import { PricingCard } from '@/components/pricing/PricingCard';
 import { PricingFAQ } from '@/components/pricing/PricingFAQ';
-// import { TestimonialSection } from '@/components/pricing/TestimonialSection';
-import { GetStartedSection } from '@/components/pricing/GetStartedSection';
-import { PageHero } from '@/components/ui/PageHero';
-import { CtaSection } from '@/components/ui/CtaSection';
+import { OffersSection } from '@/components/pricing/OffersSection';
+import { ServiceHighlights } from '@/components/pricing/ServiceHighlights';
+import { AddOnsSection } from '@/components/pricing/AddOnsSection';
 
 // Ensure this page is rendered dynamically on every request
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-	title: 'School Website Solutions | Indivio',
+	title: 'Educational Website Solutions - Transparent Pricing | Indivio',
 	description:
-		'Professional, affordable website solutions for schools with hassle-free hosting, security, support, and easy content management. Choose from three tailored plans.',
+		'Professional, affordable website solutions for educational institutions with hassle-free hosting, security, support, and easy content management. Choose from three tailored plans: Starter, Professional, and Enterprise.',
 	keywords: [
-		'school website solutions',
-		'school website design',
-		'affordable school websites',
-		'school website pricing plans',
-		'education website development',
-		'school CMS system',
-		'school website hosting',
-		'SEO for schools',
+		'education website solutions',
+		'educational website design',
+		'affordable education websites',
+		'education website pricing plans',
+		'educational institution website development',
+		'education CMS system',
+		'educational website hosting',
+		'SEO for educational institutions',
 		'educational website builder',
-		'school website maintenance',
+		'educational website maintenance',
 	],
 	openGraph: {
-		title: 'Professional School Website Solutions | Transparent Pricing',
+		title: 'Professional Educational Website Solutions | Transparent Pricing',
 		description:
-			'Get a professional website for your school with hassle-free hosting, management dashboard, and ongoing support. Choose from three tailored plans.',
+			'Get a professional website for your educational institution with hassle-free hosting, management dashboard, and ongoing support. Choose from three tailored plans.',
 		images: [
 			{
 				url: '/pricing-plans.png',
 				width: 1200,
 				height: 630,
-				alt: 'Indivio School Website Solutions',
+				alt: 'Indivio Educational Website Solutions',
 			},
 		],
 	},
@@ -47,41 +44,107 @@ export const metadata: Metadata = {
 export default async function PricingPage() {
 	// Fetch data on the server
 	const plans = await getPricingPlans();
+	const offers = await getOffers();
+	const content = siteContent.pricing;
 
 	return (
 		<>
+			{/* Fixed top padding to accommodate navbar */}
+			<div className="h-20"></div>
+
 			{/* Hero Section */}
-			<PageHero
-				title="School Website Solutions"
-				subtitle="Professional websites for educational institutions with transparent pricing and everything included."
-			/>
+			<section className="bg-gradient-to-br from-primary/5 via-white to-primary/10 pb-16 pt-12 sm:pb-20 sm:pt-16">
+				<div className="container mx-auto px-6 text-center">
+					<div className="mx-auto max-w-4xl">
+						{/* Offer Banner */}
+						{content.offerBanner?.enabled && (
+							<div className="mb-8 inline-block rounded-full border-2 border-primary/20 bg-primary/10 px-6 py-3 text-sm font-semibold text-primary shadow-lg">
+								{content.offerBanner.text}
+							</div>
+						)}
 
-			{/* Main pricing section with cards */}
-			<PricingSection plans={plans} content={siteContent} />
+						<h1 className="mb-6 font-display text-4xl font-bold text-foreground sm:text-5xl md:text-6xl">
+							{content.heroTitle}
+						</h1>
+						<p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground md:text-xl">
+							{content.heroSubtitle}
+						</p>
 
-			{/* What's included in all plans */}
+						{/* Trust Badges */}
+						{content.trustBadges && (
+							<div className="mt-12 flex flex-wrap items-center justify-center gap-6">
+								{content.trustBadges.map((badge) => (
+									<div
+										key={badge}
+										className="flex items-center gap-2 text-sm font-medium text-muted-foreground"
+									>
+										<svg
+											className="h-5 w-5 text-green-500"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+										>
+											<path
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												strokeWidth={2}
+												d="M5 13l4 4L19 7"
+											/>
+										</svg>
+										{badge}
+									</div>
+								))}
+							</div>
+						)}
+					</div>
+				</div>
+			</section>
+
+			{/* Pricing Cards Section */}
+			<section className="bg-gradient-to-b from-white to-muted/30 py-20">
+				<div className="container mx-auto px-6">
+					<div className="mb-16 text-center">
+						<h2 className="mb-4 font-display text-3xl font-bold text-foreground sm:text-4xl">
+							Choose Your Perfect Plan
+						</h2>
+						<p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+							{content.sectionIntro}
+						</p>
+					</div>
+
+					<div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-3">
+						{plans.map((plan, index) => (
+							<PricingCard key={plan.id} plan={plan} index={index} />
+						))}
+					</div>
+
+					{/* Help Text */}
+					<div className="mt-12 text-center">
+						<p className="text-muted-foreground">
+							Need help choosing?{' '}
+							<a
+								href="/contact"
+								className="font-semibold text-primary hover:underline"
+							>
+								Contact our team
+							</a>{' '}
+							for personalized recommendations.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			{/* Service Highlights */}
 			<ServiceHighlights />
 
-			{/* Detailed comparison table */}
-			<ComparisonTable plans={plans} />
+			{/* Add-ons Section */}
+			<AddOnsSection plans={plans} />
 
-			{/* Testimonials */}
-			{/* <TestimonialSection /> */}
+			{/* Current Offers */}
+			{offers && offers.length > 0 && <OffersSection offers={offers} />}
 
 			{/* Pricing FAQs */}
 			<PricingFAQ />
-
-			{/* Get Started Steps */}
-			<GetStartedSection />
-
-			{/* Final CTA */}
-			<CtaSection
-				heading="Ready to Transform Your School's Online Presence?"
-				subheading="Get a professional website that reflects your school's values and meets your community's needs."
-				buttons={[
-					{ text: 'Contact Us Today', href: '/contact', primary: true },
-				]}
-			/>
 		</>
 	);
 }

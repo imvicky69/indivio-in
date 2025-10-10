@@ -8,35 +8,42 @@
   --------------------------------------------------
 */
 :root {
-	--background: 43 100% 97%; /* Light Cream */
-	--foreground: 0 0% 7%; /* Dark Gray / Black for text */
+	--background: 0 0% 98%; /* Clean white background */
+	--foreground: 0 0% 10%; /* Dark for text */
 
 	--card: 0 0% 100%;
-	--card-foreground: 0 0% 7%;
+	--card-foreground: 0 0% 10%;
 
 	--popover: 0 0% 100%;
-	--popover-foreground: 0 0% 7%;
+	--popover-foreground: 0 0% 10%;
 
-	--primary: 0 0% 0%; /* Black */
-	--primary-foreground: 0 0% 100%; /* White text on blue buttons */
+	--primary: 0 0% 9%; /* Dark gray/black for primary actions */
+	--primary-foreground: 0 0% 98%; /* White text on primary */
 
-	--secondary: 0 0% 96.1%;
-	--secondary-foreground: 0 0% 9%;
+	--secondary: 0 0% 96%;
+	--secondary-foreground: 0 0% 10%;
 
-	--muted: 0 0% 90%; /* A muted gray for backgrounds */
-	--muted-foreground: 0 0% 45.1%;
+	--muted: 0 0% 96%; /* Light gray for backgrounds */
+	--muted-foreground: 0 0% 40%;
 
-	--accent: 25 95% 53%; /* Your Brand Orange: #f97316 */
-	--accent-foreground: 0 0% 100%;
+	--accent: 20 91% 55%; /* Orange accent from logo dot: #f24814 */
+	--accent-foreground: 0 0% 98%;
 
-	--destructive: 0 84.2% 60.2%;
+	--success: 160 84% 39%; /* Teal for success states - less aggressive than green */
+	--success-foreground: 0 0% 98%;
+
+	--destructive: 0 84% 60%;
 	--destructive-foreground: 0 0% 98%;
 
-	--border: 0 0% 89.8%;
-	--input: 0 0% 89.8%;
-	--ring: 217 100% 34%; /* Blue for focus rings */
+	--border: 0 0% 90%;
+	--input: 0 0% 90%;
+	--ring: 20 91% 55%; /* Orange ring for focus */
 
 	--radius: 0.75rem;
+
+	/* Custom theme colors */
+	--gradient-from: 0 0% 98%;
+	--gradient-to: 0 0% 96%;
 }
 
 /* 
@@ -44,35 +51,39 @@
   --------------------------------------------------
 */
 .dark {
-	--background: 0 0% 7%; /* Dark Gray: #111111 */
-	--foreground: 0 0% 98%; /* White text */
+	--background: 0 0% 10%; /* Dark background */
+	--foreground: 0 0% 98%; /* Light text */
 
-	--card: 0 0% 10%;
+	--card: 0 0% 12%;
 	--card-foreground: 0 0% 98%;
 
-	--popover: 0 0% 7%;
+	--popover: 0 0% 10%;
 	--popover-foreground: 0 0% 98%;
 
-	/* In Dark Mode, Orange becomes the primary action color */
-	--primary: 25 95% 53%; /* Your Brand Orange: #f97316 */
-	--primary-foreground: 0 0% 7%; /* Dark text on orange buttons */
+	--primary: 20 91% 55%; /* Orange primary in dark mode */
+	--primary-foreground: 0 0% 10%;
 
-	--secondary: 0 0% 14.9%;
+	--secondary: 0 0% 15%;
 	--secondary-foreground: 0 0% 98%;
 
-	--muted: 0 0% 14.9%;
-	--muted-foreground: 0 0% 63.9%;
+	--muted: 0 0% 15%;
+	--muted-foreground: 0 0% 60%;
 
-	/* The accent dot will still use this */
-	--accent: 25 95% 53%; /* Orange */
-	--accent-foreground: 0 0% 7%;
+	--accent: 20 91% 55%; /* Orange accent */
+	--accent-foreground: 0 0% 10%;
 
-	--destructive: 0 62.8% 30.6%;
+	--success: 160 84% 39%; /* Teal for success states */
+	--success-foreground: 0 0% 10%;
+
+	--destructive: 0 63% 31%;
 	--destructive-foreground: 0 0% 98%;
 
-	--border: 0 0% 14.9%;
-	--input: 0 0% 14.9%;
-	--ring: 25 95% 53%; /* Orange for focus rings */
+	--border: 0 0% 15%;
+	--input: 0 0% 15%;
+	--ring: 20 91% 55%;
+
+	--gradient-from: 0 0% 10%;
+	--gradient-to: 0 0% 12%;
 }
 
 /* Typography and layout improvements */
@@ -89,6 +100,7 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	background-color: hsl(var(--background));
 	color: hsl(var(--foreground));
+	scroll-behavior: smooth;
 }
 
 /* Prefer Inter for headings (loaded in layout) */
@@ -103,7 +115,8 @@ h4,
 h5 {
 	font-family: var(--font-heading), var(--font-poppins), system-ui;
 	color: hsl(var(--foreground));
-	line-height: 1.05;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
 }
 
 body {
@@ -114,32 +127,63 @@ body {
 		'Segoe UI',
 		Roboto;
 	font-size: 16px;
-	line-height: 1.6;
+	line-height: 1.7;
 }
 
 /* Headline utilities */
 .site-hero-title {
-	font-size: clamp(2rem, 4vw, 3rem);
+	font-size: clamp(2.5rem, 5vw, 4rem);
+	font-weight: 700;
+	letter-spacing: -0.03em;
+}
+
+.section-heading {
+	font-size: clamp(1.75rem, 3vw, 2.5rem);
 	font-weight: 700;
 	letter-spacing: -0.02em;
 }
 
-.section-heading {
-	font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-	font-weight: 600;
+/* Consistent card styling */
+.card-elevated {
+	@apply rounded-2xl border border-border bg-card shadow-lg transition-all duration-300;
 }
 
-/* Make buttons and links use the primary color variable */
+.card-elevated:hover {
+	@apply -translate-y-1 shadow-2xl;
+}
+
+/* Consistent button styling */
 .btn-primary {
-	background-color: hsl(var(--primary));
-	color: hsl(var(--primary-foreground));
+	@apply inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 font-semibold text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-lg;
+}
+
+.btn-secondary {
+	@apply inline-flex items-center justify-center rounded-full border-2 border-border bg-background px-8 py-3 font-semibold text-foreground transition-all duration-300 hover:border-primary/20 hover:bg-muted;
+}
+
+.btn-success {
+	@apply inline-flex items-center justify-center rounded-full bg-green-600 px-8 py-3 font-semibold text-white transition-all duration-300 hover:bg-green-700 hover:shadow-lg;
 }
 
 /* Improve containers */
 .container {
-	max-width: 1200px;
+	max-width: 1280px;
 	margin-left: auto;
 	margin-right: auto;
 	padding-left: 1.5rem;
 	padding-right: 1.5rem;
+}
+
+/* Consistent gradient background */
+.gradient-bg {
+	background: linear-gradient(
+		to bottom right,
+		hsl(var(--gradient-from)),
+		hsl(var(--gradient-to))
+	);
+}
+
+/* Section spacing */
+.section-padding {
+	@apply py-16 sm:py-20 md:py-24;
 }
