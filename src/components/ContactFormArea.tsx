@@ -142,7 +142,7 @@ export function ContactFormArea() {
 								Ready to transform your school&apos;s digital presence? Our team
 								of experts is here to help you every step of the way. Reach out
 								through any of the channels below, and we&apos;ll get back to
-								you within 24 hours.
+								you within 4-6 hours.
 							</p>
 						</motion.div>
 
@@ -155,7 +155,7 @@ export function ContactFormArea() {
 						>
 							<div className="flex items-center gap-2">
 								<Clock className="h-4 w-4 text-primary" />
-								<span>Response within 24 hours</span>
+								<span>Response within 1 hour</span>
 							</div>
 							<div className="flex items-center gap-2">
 								<MessageSquare className="h-4 w-4 text-green-500" />
@@ -189,7 +189,7 @@ export function ContactFormArea() {
 									</h2>
 									<p className="mb-6 text-lg text-muted-foreground">
 										Your message has been received. We&apos;ll get back to you
-										within 24 hours.
+										within 4 hours.
 									</p>
 									<button
 										onClick={() => setSubmitted(false)}
@@ -479,7 +479,7 @@ export function ContactFormArea() {
 								</div>
 								<div className="mt-3 flex items-start gap-2 text-sm text-muted-foreground">
 									<MapPin className="mt-0.5 h-4 w-4 flex-shrink-0" />
-									<span>New Delhi, India</span>
+									<span>Nirmali, Bihar</span>
 								</div>
 							</div>
 						</motion.div>

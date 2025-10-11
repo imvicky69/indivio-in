@@ -9,7 +9,7 @@ import { CtaSection } from '@/components/ui/CtaSection';
 
 import { ValueSection } from '@/components/why-indivio/ValueSection';
 import { UnifiedAdvantage } from '@/components/why-indivio/UnifiedAdvantage';
-import { SocialProof } from '@/components/why-indivio/SocialProof';
+// import { SocialProof } from '@/components/why-indivio/SocialProof';
 import { FindYourFit } from '@/components/why-indivio/FindYourFit';
 // Step 1: Set the page-specific SEO metadata
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ export default function WhyIndivioPage() {
 			<IndivioDifference />
 			<FounderMessage />
 			<UnifiedAdvantage />
-			<SocialProof />
+			{/* <SocialProof /> */}
 			<LaunchProcess />
 			<FindYourFit />
 			<CtaSection {...whyIndivioCtaProps} />

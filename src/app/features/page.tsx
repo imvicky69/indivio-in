@@ -7,7 +7,7 @@ import { FeaturesHero } from '@/components/features/FeaturesHero';
 import { IncludedFeatures } from '@/components/features/IncludedFeatures';
 import { DetailedFeatureList } from '@/components/features/DetailedFeatureList';
 import { AdmissionBooster } from '@/components/features/AdmissionBooster';
-import { FeatureTestimonials } from '@/components/features/FeatureTestimonials';
+// import { FeatureTestimonials } from '@/components/features/FeatureTestimonials';
 
 export const metadata: Metadata = {
 	title: 'Indivio: Modern School Website Features & Management Platform',
@@ -34,7 +34,7 @@ export default function FeaturesPage() {
 			<IncludedFeatures />
 			<AdmissionBooster />
 			<DetailedFeatureList />
-			<FeatureTestimonials />
+			{/* <FeatureTestimonials /> */}
 			<PlatformBenefits />
 			<FutureReady />
 			<CtaSection {...featuresCtaProps} />
