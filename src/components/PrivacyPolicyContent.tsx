@@ -15,100 +15,88 @@ export function PrivacyPolicyContent() {
 				<div className="prose prose-lg max-w-none">
 					<p className="text-dark/60 text-sm">Last Updated: October 8, 2025</p>
 					<p className="lead">
-						Welcome to Indivio. This Privacy Policy explains how we collect,
-						use, disclose, and safeguard your information when you visit our
-						website and use our services. Your privacy and security are our top
-						priorities.
+						This Privacy Policy outlines how Indivio collects, uses, and
+						protects information when visitors access this website and utilize
+						the services offered. Data privacy and security are fundamental to
+						the platform.
 					</p>
 
-					<div className="my-8 border-l-4 border-yellow-400 bg-yellow-50 p-4 text-yellow-800">
-						<strong>Disclaimer:</strong> This is a template and not legal
-						advice. You should consult with a legal professional to ensure your
-						policy is fully compliant with all applicable laws and regulations.
-					</div>
-
-					<PolicyHeading>1. Information We Collect</PolicyHeading>
+					<PolicyHeading>1. Information Collection</PolicyHeading>
 					<p>
-						We may collect information about you in a variety of ways. The
-						information we may collect on the Site includes:
+						Information may be collected in various ways when users interact
+						with the platform:
 					</p>
 					<ul>
 						<li>
-							<strong>Personal Data:</strong> Personally identifiable
-							information, such as your name, school name, email address, and
-							telephone number, that you voluntarily give to us when you fill
-							out a contact form or register for our services.
+							<strong>Personal Information:</strong> Name, school name, email
+							address, and telephone number provided voluntarily through
+							contact forms or service registration.
 						</li>
 						<li>
-							<strong>Non-Personal Data:</strong> Information our servers
-							automatically collect when you access the Site, such as your IP
-							address, your browser type, your operating system, and your usage
-							data.
+							<strong>Technical Information:</strong> IP address, browser type,
+							operating system, and usage data automatically collected by
+							servers when accessing the website.
 						</li>
 					</ul>
 
-					<PolicyHeading>2. How We Use Your Information</PolicyHeading>
+					<PolicyHeading>2. Information Usage</PolicyHeading>
 					<p>
-						Having accurate information about you permits us to provide you with
-						a smooth, efficient, and customized experience. Specifically, we may
-						use information collected about you via the Site to:
+						Collected information enables the platform to deliver efficient and
+						customized services. Information may be used to:
 					</p>
 					<ul>
-						<li>Create and manage your account.</li>
-						<li>Email you regarding your account or order.</li>
-						<li>Process payments and refunds.</li>
+						<li>Create and manage user accounts</li>
+						<li>Send account and service-related communications</li>
+						<li>Process payments and transactions</li>
+						<li>Provide customer support and service updates</li>
 						<li>
-							Communicate with you about our services and provide support.
-						</li>
-						<li>
-							Monitor and analyze usage and trends to improve your experience
-							with the Site.
+							Analyze usage patterns to enhance platform functionality and user
+							experience
 						</li>
 					</ul>
 
-					<PolicyHeading>3. Data Sharing and Disclosure</PolicyHeading>
+					<PolicyHeading>3. Data Sharing</PolicyHeading>
 					<p>
-						We do not sell, trade, or rent your Personal Data to others. We may
-						share information with third parties that perform services for us or
-						on our behalf, including cloud hosting (Google Cloud & Firebase),
-						payment processing, and data analysis.
+						Personal data is not sold, traded, or rented to third parties.
+						Information may be shared with service providers that support
+						platform operations, including cloud hosting (Google Cloud &
+						Firebase), payment processing, and data analysis services. These
+						providers are bound by confidentiality agreements.
 					</p>
 
 					<PolicyHeading>4. Data Security</PolicyHeading>
 					<p>
-						We use administrative, technical, and physical security measures to
-						help protect your personal information. Our platform is built on
-						Google&apos;s trusted cloud infrastructure, and we implement
-						industry-standard security measures to protect your data.
+						Administrative, technical, and physical security measures protect
+						user information. The platform operates on Google Cloud
+						infrastructure and implements industry-standard security protocols
+						to safeguard data against unauthorized access.
 					</p>
 
-					<PolicyHeading>5. Your Data Rights</PolicyHeading>
+					<PolicyHeading>5. User Rights</PolicyHeading>
 					<p>
-						In accordance with Indian law, you have the right to access,
-						correct, or request the deletion of your personal data. To make such
-						a request, please contact us using the contact information provided
-						below.
+						Under applicable Indian law, users have the right to access,
+						correct, or request deletion of their personal data. Requests may be
+						submitted using the contact information provided below.
 					</p>
 
-					<PolicyHeading>6. Cookies Policy</PolicyHeading>
+					<PolicyHeading>6. Cookies</PolicyHeading>
 					<p>
-						We may use cookies and other tracking technologies on the Site to
-						help customize the Site and improve your experience. A
-						&apos;cookie&apos; is a string of information which assigns you a
-						unique identifier that we store on your computer.
+						The website may use cookies and similar tracking technologies to
+						enhance user experience and analyze site usage. Cookies are small
+						data files stored on user devices that help improve site
+						functionality.
 					</p>
 
-					<PolicyHeading>7. Changes to This Policy</PolicyHeading>
+					<PolicyHeading>7. Policy Updates</PolicyHeading>
 					<p>
-						We may update this Privacy Policy from time to time. We will notify
-						you of any changes by updating the &apos;Last Updated&apos; date of
-						this Privacy Policy.
+						This Privacy Policy may be updated periodically. Changes will be
+						reflected by updating the &quot;Last Updated&quot; date at the top of this
+						document.
 					</p>
 
-					<PolicyHeading>8. Contact Us</PolicyHeading>
+					<PolicyHeading>8. Contact Information</PolicyHeading>
 					<p>
-						If you have questions or comments about this Privacy Policy, please
-						contact us at:
+						For questions or concerns regarding this Privacy Policy, contact:
 					</p>
 					<a
 						href="mailto:hello@indivio.in"

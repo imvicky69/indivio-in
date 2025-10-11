@@ -127,7 +127,7 @@ export function Footer() {
 						<ul className="space-y-3">
 							<li>
 								<Link
-									href="/terms"
+									href="/terms-and-conditions"
 									className="transition-colors hover:text-primary"
 								>
 									Terms & Conditions
@@ -135,7 +135,7 @@ export function Footer() {
 							</li>
 							<li>
 								<Link
-									href="/privacy"
+									href="/privacy-policy"
 									className="transition-colors hover:text-primary"
 								>
 									Privacy Policy
