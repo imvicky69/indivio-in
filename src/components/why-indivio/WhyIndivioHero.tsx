@@ -26,12 +26,13 @@ export function WhyIndivioHero() {
 
         <div className="mx-auto max-w-4xl">
           <h1 className="font-display text-4xl font-bold text-primary sm:text-5xl md:text-6xl">
-            Built for Education. Backed by Technology. Driven by Partnership.
+            Join the Digital Transformation Revolution for Schools
           </h1>
           <p className="mt-6 font-sans text-lg text-dark/70 md:text-xl">
-            At Indivio, we&apos;re on a mission to give every school in India a
-            digital identity that&apos;s powerful, affordable, and ready for the
-            future.
+            We&apos;re not just building school websites — we&apos;re creating
+            partnerships that empower educational institutions with modern
+            technology, transforming how schools connect, manage, and grow in
+            India&apos;s digital future.
           </p>
         </div>
       </div>
