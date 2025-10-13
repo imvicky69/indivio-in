@@ -9,8 +9,9 @@ export default withPWA({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
   register: true,
-  skipWaiting: true,
-  runtimeCaching: [
+  workboxOptions: {
+    skipWaiting: true,
+    runtimeCaching: [
     {
       urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
       handler: 'CacheFirst',
@@ -91,4 +92,5 @@ export default withPWA({
       }
     }
   ]
+  }
 })(nextConfig);
