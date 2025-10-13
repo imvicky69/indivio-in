@@ -14,6 +14,9 @@ import {
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
+// Revalidate every 1 minute (60 seconds)
+export const revalidate = 60;
+
 interface PlanPageProps {
 	params: Promise<{ planId: string }>;
 }

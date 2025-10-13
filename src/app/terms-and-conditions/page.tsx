@@ -3,20 +3,23 @@ import type { Metadata } from 'next';
 import { PageHero } from '@/components/ui/PageHero';
 import { TermsAndConditionsContent } from '@/components/TermsAndConditionsContent';
 
+// Revalidate every 1 minute (60 seconds)
+export const revalidate = 60;
+
 export const metadata: Metadata = {
-  title: 'Terms and Conditions | Indivio',
-  description:
-    "Please read the Terms and Conditions for using Indivio's services. This agreement governs your use of our website development, hosting, and management platform.",
+	title: 'Terms and Conditions | Indivio',
+	description:
+		"Please read the Terms and Conditions for using Indivio's services. This agreement governs your use of our website development, hosting, and management platform.",
 };
 
 export default function TermsAndConditionsPage() {
-  return (
-    <>
-      <PageHero
-        title="Terms and Conditions"
-        subtitle="This agreement governs your use of our platform. Please read it carefully."
-      />
-      <TermsAndConditionsContent />
-    </>
-  );
+	return (
+		<>
+			<PageHero
+				title="Terms and Conditions"
+				subtitle="This agreement governs your use of our platform. Please read it carefully."
+			/>
+			<TermsAndConditionsContent />
+		</>
+	);
 }

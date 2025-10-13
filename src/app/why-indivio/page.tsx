@@ -15,8 +15,11 @@ import { UnifiedAdvantage } from '@/components/why-indivio/UnifiedAdvantage';
 // import { SocialProof } from '@/components/why-indivio/SocialProof';
 import { FindYourFit } from '@/components/why-indivio/FindYourFit';
 // Step 1: Set the page-specific SEO metadata
+// Revalidate every 1 minute (60 seconds)
+export const revalidate = 60;
 export const metadata: Metadata = {
-	title: 'Why Indivio? | School Website & Management System for Digital Transformation',
+	title:
+		'Why Indivio? | School Website & Management System for Digital Transformation',
 	description:
 		"Transform your school with Indivio's EdTech platform. Modern school websites, management systems, and complete school ERP solutions. Join India's education technology revolution with affordable, powerful digital transformation for schools.",
 	keywords: [
@@ -34,10 +37,11 @@ export const metadata: Metadata = {
 };
 
 const whyIndivioCtaProps = {
-heading: "Start Your School's Digital Journey Today",
-subheading: "Join the revolution in education technology. Let's build the future of your school together.",
+	heading: "Start Your School's Digital Journey Today",
+	subheading:
+		"Join the revolution in education technology. Let's build the future of your school together.",
 	buttons: [
-{ text: 'Explore Features', href: '/features', primary: false }, // Outlined button
+		{ text: 'Explore Features', href: '/features', primary: false }, // Outlined button
 		{ text: 'View Pricing Plans', href: '/pricing', primary: true }, // Filled button
 	],
 };

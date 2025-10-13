@@ -6,6 +6,19 @@ module.exports = {
 	priority: 0.7,
 	sitemapSize: 5000,
 	exclude: ['/payment-status', '/payment-page'],
+	// Custom transformer to remove sitemap.xml from being included in itself
+	transform: (config, url) => {
+		// Don't include sitemap.xml in sitemap
+		if (url.endsWith('/sitemap.xml')) {
+			return null;
+		}
+		return {
+			loc: url,
+			changefreq: config.changefreq,
+			priority: config.priority,
+			lastmod: new Date().toISOString(),
+		};
+	},
 	additionalPaths: async (config) => {
 		const result = [];
 
@@ -29,7 +42,10 @@ module.exports = {
 		return result;
 	},
 	robotsTxtOptions: {
-		additionalSitemaps: [],
+		additionalSitemaps: [
+			// Only include the main sitemap index
+			'https://indivio.in/sitemap.xml',
+		],
 		policies: [
 			{
 				userAgent: '*',

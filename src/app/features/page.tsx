@@ -9,6 +9,9 @@ import { DetailedFeatureList } from '@/components/features/DetailedFeatureList';
 import { AdmissionBooster } from '@/components/features/AdmissionBooster';
 // import { FeatureTestimonials } from '@/components/features/FeatureTestimonials';
 
+// Revalidate every 1 minute (60 seconds)
+export const revalidate = 60;
+
 export const metadata: Metadata = {
 	title: 'Indivio: Modern School Website Features & Management Platform',
 	description:

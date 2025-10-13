@@ -3,6 +3,9 @@ import { ContactFormArea } from '@/components/ContactFormArea';
 import { CtaSection } from '@/components/ui/CtaSection';
 // import { WhyChooseIndivio } from '@/components/why-indivio/WhyChooseIndivio';
 
+// Revalidate every 1 minute (60 seconds)
+export const revalidate = 60;
+
 export const metadata: Metadata = {
 	title: 'Contact Us | Get in Touch with the Indivio Team',
 	description:

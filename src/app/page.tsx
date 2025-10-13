@@ -10,6 +10,9 @@ import { CtaSection } from '@/components/ui/CtaSection';
 import { TechAdvantageSection } from '@/components/home/TechAdvantageSection';
 import type { Metadata } from 'next';
 
+// Revalidate every 1 minute (60 seconds)
+export const revalidate = 60;
+
 // Page-specific SEO metadata
 export const metadata: Metadata = {
 	title: 'Indivio | Affordable School Management System & Website Solution',
