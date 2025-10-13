@@ -4,6 +4,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
+import SplitText from '../SplitText';
 
 const CompositeImagePlaceholder = () => (
 	<div className="relative mx-auto mt-12 w-full max-w-lg md:mx-0 md:mt-0">
@@ -13,14 +14,24 @@ const CompositeImagePlaceholder = () => (
 			transition={{ duration: 0.6, delay: 0.4 }}
 			className="relative z-0 h-auto w-[85%] rounded-2xl border border-border bg-card p-3 shadow-xl"
 		>
-			<div className="h-48 rounded-lg bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50">
-				<div className="flex h-full flex-col items-center justify-center p-4">
-					<div className="h-6 w-32 rounded-full bg-blue-200/50"></div>
-					<div className="mt-4 h-4 w-48 rounded-full bg-blue-100/50"></div>
-					<div className="mt-2 h-4 w-40 rounded-full bg-blue-100/50"></div>
-					<div className="mt-4 grid w-full grid-cols-2 gap-2">
-						<div className="h-8 rounded-lg bg-blue-200/50"></div>
-						<div className="h-8 rounded-lg bg-green-200/50"></div>
+			{/* School Website Preview */}
+			<div className="rounded-lg bg-white">
+				<div className="flex items-center justify-between border-b border-gray-200 p-2">
+					<div className="flex items-center gap-1">
+						<div className="h-3 w-3 rounded-full bg-red-500"></div>
+						<div className="h-3 w-3 rounded-full bg-yellow-500"></div>
+						<div className="h-3 w-3 rounded-full bg-green-500"></div>
+					</div>
+					<div className="h-4 w-1/2 rounded-full bg-gray-200"></div>
+					<div></div>
+				</div>
+				<div className="p-4">
+					<div className="flex h-24 items-center justify-center rounded-lg bg-blue-100">
+						<p className="font-bold text-blue-800">School Hero Image</p>
+					</div>
+					<div className="mt-4 space-y-2">
+						<div className="h-4 w-3/4 rounded-full bg-gray-200"></div>
+						<div className="h-4 w-1/2 rounded-full bg-gray-200"></div>
 					</div>
 				</div>
 			</div>
@@ -31,16 +42,27 @@ const CompositeImagePlaceholder = () => (
 			transition={{ duration: 0.6, delay: 0.6 }}
 			className="absolute -bottom-8 -right-4 z-10 h-auto w-[90%] rounded-2xl border border-border bg-card p-3 shadow-2xl"
 		>
-			<div className="h-52 rounded-lg bg-gradient-to-br from-primary/10 to-muted">
-				<div className="grid h-full grid-cols-3 gap-2 p-4">
+			{/* Admin Dashboard Preview */}
+			<div className="h-52 rounded-lg bg-slate-50 p-4">
+				<p className="mb-2 text-sm font-bold text-slate-800">Admin Dashboard</p>
+				<div className="grid grid-cols-3 gap-2">
 					<div className="col-span-1 space-y-2">
-						<div className="h-4 w-full rounded-full bg-primary/20"></div>
-						<div className="h-20 rounded-lg bg-white/40"></div>
-						<div className="h-20 rounded-lg bg-white/40"></div>
+						<div className="flex h-8 items-center justify-center rounded-lg bg-blue-200/50 text-xs font-bold text-blue-800">
+							Menu
+						</div>
+						<div className="h-10 rounded-lg bg-gray-200/60"></div>
+						<div className="h-10 rounded-lg bg-gray-200/60"></div>
+						<div className="h-10 rounded-lg bg-gray-200/60"></div>
 					</div>
 					<div className="col-span-2 space-y-2">
-						<div className="h-4 w-3/4 rounded-full bg-primary/20"></div>
-						<div className="h-44 rounded-lg bg-white/40"></div>
+						<div className="flex h-8 items-center justify-center rounded-lg bg-green-200/50 text-xs font-bold text-green-800">
+							Content Editor
+						</div>
+						<div className="h-28 space-y-1 rounded-lg border border-gray-200 bg-white p-2">
+							<div className="h-3 w-3/4 rounded-full bg-gray-200"></div>
+							<div className="h-3 w-full rounded-full bg-gray-200"></div>
+							<div className="h-3 w-1/2 rounded-full bg-gray-200"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -62,15 +84,17 @@ export function FeaturesHero() {
 			<div className="container mx-auto px-6">
 				<div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
 					<div className="text-center md:text-left">
-						<motion.h1
-							initial={{ opacity: 0, y: 30 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.6 }}
+						<SplitText
+							text="More Than a Website. It's Your Educational Institute's Digital Hub."
+							tag="h1"
 							className="site-hero-title text-foreground"
-						>
-							More Than a Website. It&apos;s Your Educational Institute&apos;s
-							Digital Hub.
-						</motion.h1>
+							delay={50}
+							duration={0.8}
+							from={{ opacity: 0, y: 40 }}
+							to={{ opacity: 1, y: 0 }}
+							splitType="chars"
+							threshold={0.1}
+						/>
 						<motion.p
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}

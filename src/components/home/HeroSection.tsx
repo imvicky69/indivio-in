@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { Button } from '../ui/Button';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import CircularText from '../CircularText';
+import SplitText from '../SplitText';
 
 export function HeroSection() {
 	return (
@@ -23,30 +25,43 @@ export function HeroSection() {
 					initial={{ opacity: 0, y: 30 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6 }}
-					className="mb-8 flex flex-col items-center justify-center gap-4"
+					className="mb-12 flex flex-col items-center justify-center gap-8 md:gap-10"
 				>
 					<motion.div
 						initial={{ scale: 0.8, opacity: 0 }}
 						animate={{ scale: 1, opacity: 1 }}
 						transition={{ duration: 0.5, delay: 0.2 }}
+						className="relative"
 					>
+						{/* Circular Text Animation */}
+						<div className="absolute inset-0 -mt-2 flex items-center justify-center">
+							<CircularText
+								text="INDIVIO • INDIVIO • INDIVIO • "
+								spinDuration={20}
+								onHover="speedUp"
+								className="font-bold text-primary/60"
+							/>
+						</div>
 						<Image
 							src="/fevicon.png"
 							alt="Indivio Logo"
 							width={100}
 							height={100}
-							className="mb-4 drop-shadow-lg"
+							className="relative z-10 drop-shadow-lg"
 						/>
 					</motion.div>
 
-					<motion.h1
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.3 }}
+					<SplitText
+						text="Your All-in-One School Website & Management Portal"
+						tag="h1"
 						className="site-hero-title max-w-5xl text-foreground"
-					>
-						Your All-in-One School Website & Management Portal
-					</motion.h1>
+						delay={50}
+						duration={0.8}
+						from={{ opacity: 0, y: 40 }}
+						to={{ opacity: 1, y: 0 }}
+						splitType="chars"
+						threshold={0.1}
+					/>
 				</motion.div>
 
 				<motion.p

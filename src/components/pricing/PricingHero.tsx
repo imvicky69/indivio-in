@@ -2,6 +2,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import SplitText from '../SplitText';
 
 export function PricingHero() {
 	return (
@@ -17,14 +18,17 @@ export function PricingHero() {
 
 			<div className="container mx-auto px-6 text-center">
 				<div className="mx-auto max-w-4xl">
-					<motion.h1
-						initial={{ opacity: 0, y: 30 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6 }}
+					<SplitText
+						text="Simple, Transparent Pricing for Every Educational Institution"
+						tag="h1"
 						className="site-hero-title text-foreground"
-					>
-						Simple, Transparent Pricing for Every Educational Institution
-					</motion.h1>
+						delay={50}
+						duration={0.8}
+						from={{ opacity: 0, y: 40 }}
+						to={{ opacity: 1, y: 0 }}
+						splitType="chars"
+						threshold={0.1}
+					/>
 					<motion.p
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}

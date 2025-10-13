@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { ContactFormArea } from '@/components/ContactFormArea';
 import { CtaSection } from '@/components/ui/CtaSection';
-import { WhyChooseIndivio } from '@/components/why-indivio/WhyChooseIndivio';
+// import { WhyChooseIndivio } from '@/components/why-indivio/WhyChooseIndivio';
 
 export const metadata: Metadata = {
 	title: 'Contact Us | Get in Touch with the Indivio Team',
@@ -23,7 +23,7 @@ export default function ContactPage() {
 	return (
 		<div className="mx-4 md:mx-12">
 			<ContactFormArea />
-			<WhyChooseIndivio />
+			{/* <WhyChooseIndivio /> */}
 			<CtaSection {...contactCtaProps} />
 		</div>
 	);

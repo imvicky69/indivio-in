@@ -1,6 +1,7 @@
 // src/components/PageHero.tsx
 'use client';
 import { motion } from 'framer-motion';
+import SplitText from '../SplitText';
 
 type PageHeroProps = {
 	title: string;
@@ -17,14 +18,17 @@ export function PageHero({ title, subtitle }: PageHeroProps) {
 					transition={{ duration: 0.8, ease: 'easeOut' }}
 					className="mx-auto max-w-3xl"
 				>
-					<motion.h1
-						initial={{ opacity: 0, scale: 0.9 }}
-						animate={{ opacity: 1, scale: 1 }}
-						transition={{ duration: 0.8, delay: 0.2 }}
+					<SplitText
+						text={title}
+						tag="h1"
 						className="font-display text-4xl font-bold text-primary sm:text-5xl"
-					>
-						{title}
-					</motion.h1>
+						delay={50}
+						duration={0.8}
+						from={{ opacity: 0, y: 40 }}
+						to={{ opacity: 1, y: 0 }}
+						splitType="chars"
+						threshold={0.1}
+					/>
 					<motion.p
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
