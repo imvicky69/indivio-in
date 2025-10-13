@@ -13,7 +13,7 @@
 	"scripts": {
 		"push": "git add . && git commit -m \"update\" && git push",
 		"dev": "next dev --turbopack",
-		"build": "next build --turbopack",
+		"build": "next build",
 		"postbuild": "next-sitemap",
 		"start": "next start",
 		"lint": "eslint \"src/**/*.{js,ts,tsx}\" --quiet"
