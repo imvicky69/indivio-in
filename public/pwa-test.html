@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA Verification Test - Indivio</title>
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .check-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            border-radius: 4px;
+        }
+        .check-item.loading {
+            border-left-color: #FFC107;
+        }
+        .check-item.error {
+            border-left-color: #F44336;
+        }
+        .icon-preview {
+            display: inline-block;
+            margin: 5px;
+            text-align: center;
+        }
+        .icon-preview img {
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .manifest-data {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        .success { color: #4CAF50; font-weight: bold; }
+        .error { color: #F44336; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ PWA Configuration Verification</h1>
+        
+        <div id="manifest-check" class="check-item loading">
+            <strong>Manifest File:</strong> Checking...
+        </div>
+        
+        <div id="icons-check" class="check-item loading">
+            <strong>PWA Icons:</strong> Checking...
+        </div>
+        
+        <div id="sw-check" class="check-item loading">
+            <strong>Service Worker Support:</strong> Checking...
+        </div>
+        
+        <h2>Icon Preview</h2>
+        <div id="icon-preview">
+            <div class="icon-preview">
+                <img src="/favicon-16x16.png" alt="16x16" width="16" height="16">
+                <div>16x16</div>
+            </div>
+            <div class="icon-preview">
+                <img src="/favicon-32x32.png" alt="32x32" width="32" height="32">
+                <div>32x32</div>
+            </div>
+            <div class="icon-preview">
+                <img src="/apple-touch-icon.png" alt="180x180" width="90" height="90">
+                <div>180x180</div>
+            </div>
+            <div class="icon-preview">
+                <img src="/icon-192x192.png" alt="192x192" width="96" height="96">
+                <div>192x192</div>
+            </div>
+            <div class="icon-preview">
+                <img src="/icon-512x512.png" alt="512x512" width="128" height="128">
+                <div>512x512</div>
+            </div>
+        </div>
+        
+        <h2>Manifest Data</h2>
+        <div class="manifest-data">
+            <pre id="manifest-content">Loading...</pre>
+        </div>
+        
+        <h2>Installation Instructions</h2>
+        <div class="check-item">
+            <strong>Desktop (Chrome/Edge):</strong>
+            <ol>
+                <li>Look for the install icon (⊕) in the address bar</li>
+                <li>Click to install the app</li>
+            </ol>
+        </div>
+        
+        <div class="check-item">
+            <strong>Mobile:</strong>
+            <ol>
+                <li><strong>Chrome:</strong> Menu → "Install app" or "Add to Home Screen"</li>
+                <li><strong>Safari:</strong> Share button → "Add to Home Screen"</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        // Check manifest
+        fetch('/site.webmanifest')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('manifest-check').className = 'check-item';
+                document.getElementById('manifest-check').innerHTML = 
+                    '<strong>Manifest File:</strong> <span class="success">✓ Valid</span> - ' + 
+                    data.name + ' (' + data.icons.length + ' icons configured)';
+                
+                document.getElementById('manifest-content').textContent = 
+                    JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                document.getElementById('manifest-check').className = 'check-item error';
+                document.getElementById('manifest-check').innerHTML = 
+                    '<strong>Manifest File:</strong> <span class="error">✗ Error</span> - ' + error.message;
+            });
+        
+        // Check icons
+        const icons = [
+            '/favicon-16x16.png',
+            '/favicon-32x32.png',
+            '/apple-touch-icon.png',
+            '/icon-192x192.png',
+            '/icon-512x512.png'
+        ];
+        
+        Promise.all(icons.map(icon => 
+            fetch(icon).then(r => r.ok)
+        )).then(results => {
+            const allFound = results.every(r => r);
+            if (allFound) {
+                document.getElementById('icons-check').className = 'check-item';
+                document.getElementById('icons-check').innerHTML = 
+                    '<strong>PWA Icons:</strong> <span class="success">✓ All icons found</span> (' + icons.length + ' files)';
+            } else {
+                document.getElementById('icons-check').className = 'check-item error';
+                document.getElementById('icons-check').innerHTML = 
+                    '<strong>PWA Icons:</strong> <span class="error">✗ Some icons missing</span>';
+            }
+        });
+        
+        // Check service worker support
+        if ('serviceWorker' in navigator) {
+            document.getElementById('sw-check').className = 'check-item';
+            document.getElementById('sw-check').innerHTML = 
+                '<strong>Service Worker Support:</strong> <span class="success">✓ Browser supports service workers</span><br>' +
+                '<small>Note: Service worker will be registered in production build</small>';
+        } else {
+            document.getElementById('sw-check').className = 'check-item error';
+            document.getElementById('sw-check').innerHTML = 
+                '<strong>Service Worker Support:</strong> <span class="error">✗ Not supported in this browser</span>';
+        }
+    </script>
+</body>
+</html>
