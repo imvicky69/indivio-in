@@ -1,7 +1,10 @@
 // src/components/ui/CtaSection.tsx
 'use client';
-import { Button } from '@/components/ui/Button';
 import { motion } from 'framer-motion';
+import { MagneticButton } from './MagneticButton';
+import { ParticleBackground } from './ParticleBackground';
+import { FloatingElement } from './FloatingElement';
+import { Sparkles, Rocket } from 'lucide-react';
 
 type ButtonProps = {
 	text: string;
@@ -29,22 +32,39 @@ export function CtaSection({
 	buttons = defaultButtons,
 }: CtaSectionProps) {
 	return (
-		<section className="section-padding relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-muted/20">
-			{/* Decorative Background */}
+		<section className="section-padding relative overflow-hidden bg-gradient-to-br from-purple-900/20 via-background to-pink-900/20">
+			{/* Animated Background with Particles */}
 			<div className="absolute inset-0 -z-10">
-				<div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-green-500/10 blur-3xl" />
-				<div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+				<ParticleBackground />
+				<div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-purple-500/20 blur-3xl" />
+				<div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-pink-500/20 blur-3xl" />
+				<div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl" />
 			</div>
 
-			<div className="container mx-auto px-6 text-center">
-				<motion.div
-					initial={{ opacity: 0, y: 30 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.6 }}
-				>
-					<h2 className="section-heading mb-6 text-foreground">{heading}</h2>
-				</motion.div>
+			<div className="container relative z-10 mx-auto px-6 text-center">
+				<FloatingElement delay={0} duration={4}>
+					<motion.div
+						initial={{ opacity: 0, y: 30 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.6 }}
+					>
+						<motion.div
+							animate={{
+								scale: [1, 1.02, 1],
+							}}
+							transition={{
+								duration: 3,
+								repeat: Infinity,
+								ease: 'easeInOut',
+							}}
+						>
+							<h2 className="section-heading mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+								{heading}
+							</h2>
+						</motion.div>
+					</motion.div>
+				</FloatingElement>
 
 				{subheading && (
 					<motion.p
@@ -63,7 +83,7 @@ export function CtaSection({
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.6, delay: 0.4 }}
-					className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+					className="mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row"
 				>
 					{buttons.map((button, index) => (
 						<motion.div
@@ -72,15 +92,20 @@ export function CtaSection({
 							whileInView={{ opacity: 1, scale: 1 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-							whileHover={{ scale: 1.05 }}
-							whileTap={{ scale: 0.95 }}
 						>
-							<Button
+							<MagneticButton
 								href={button.href}
 								variant={button.primary ? 'primary' : 'secondary'}
 							>
-								{button.text}
-							</Button>
+								<span className="flex items-center gap-2">
+									{button.primary ? (
+										<Rocket className="h-5 w-5" />
+									) : (
+										<Sparkles className="h-5 w-5" />
+									)}
+									{button.text}
+								</span>
+							</MagneticButton>
 						</motion.div>
 					))}
 				</motion.div>
