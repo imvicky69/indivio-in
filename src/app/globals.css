@@ -187,3 +187,93 @@ body {
 .section-padding {
 	@apply py-16 sm:py-20 md:py-24;
 }
+
+/* Custom scrollbar with gradient */
+::-webkit-scrollbar {
+width: 10px;
+}
+
+::-webkit-scrollbar-track {
+background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+background: linear-gradient(to bottom, #8b5cf6, #ec4899, #3b82f6);
+border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: linear-gradient(to bottom, #7c3aed, #db2777, #2563eb);
+}
+
+/* Gradient text utility */
+.gradient-text {
+@apply bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent;
+}
+
+/* Glassmorphism utility */
+.glass {
+@apply rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl;
+}
+
+/* Animation utilities */
+@keyframes float {
+0%,
+100% {
+transform: translateY(0px);
+}
+50% {
+transform: translateY(-20px);
+}
+}
+
+@keyframes pulse-glow {
+0%,
+100% {
+box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+50% {
+box-shadow: 0 0 40px rgba(139, 92, 246, 0.6);
+}
+}
+
+@keyframes shimmer {
+0% {
+background-position: -1000px 0;
+}
+100% {
+background-position: 1000px 0;
+}
+}
+
+.animate-float {
+animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+animation: shimmer 3s infinite;
+background: linear-gradient(
+to right,
+transparent 0%,
+rgba(255, 255, 255, 0.3) 50%,
+transparent 100%
+);
+background-size: 1000px 100%;
+}
+
+/* Gradient backgrounds */
+.gradient-purple-pink {
+background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+}
+
+.gradient-blue-green {
+background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+}
+
+.gradient-orange-red {
+background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+}
