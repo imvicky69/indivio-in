@@ -107,6 +107,12 @@ export interface ContactSubmission {
 	createdAt: Timestamp;
 }
 
+export interface NewsletterSubscription {
+	email: string;
+	createdAt: Timestamp;
+	source?: string;
+}
+
 // Firestore Helper Functions
 
 /**
@@ -187,6 +193,32 @@ export async function saveContactSubmission(
 	} catch (error) {
 		console.error('Error saving contact submission:', error);
 		throw error; // Pass the original error up the chain for better debugging
+	}
+}
+
+/**
+ * Save a newsletter subscription to Firestore
+ */
+export async function saveNewsletterSubscription(
+	email: string,
+	source: string = 'footer'
+): Promise<string> {
+	try {
+		// Verify Firestore is initialized
+		if (!db) {
+			throw new Error('Firebase is not initialized properly');
+		}
+
+		const docRef = await addDoc(collection(db, 'newsletter_subscriptions'), {
+			email,
+			source,
+			createdAt: serverTimestamp(),
+		});
+		console.log('Newsletter subscription saved with ID:', docRef.id);
+		return docRef.id;
+	} catch (error) {
+		console.error('Error saving newsletter subscription:', error);
+		throw new Error('Failed to save subscription. Please try again.');
 	}
 }
 

@@ -67,7 +67,7 @@ export function ContactFormArea() {
 
 			// Show success message
 			toast.success(
-				'Message sent successfully! We will get back to you within 24 hours.',
+				'Message sent successfully! We will get back to you within 4-6 hours.',
 				{ id: notification }
 			);
 
@@ -417,9 +417,9 @@ export function ContactFormArea() {
 										<h3 className="text-lg font-semibold text-foreground">
 											Email Support
 										</h3>
-										<p className="text-muted-foreground">support@indivio.in</p>
+										<p className="text-muted-foreground">indivio.in@gmail.com</p>
 										<p className="text-sm text-muted-foreground">
-											We respond within 24 hours
+											We respond within 4-6 hours
 										</p>
 									</div>
 								</div>
@@ -479,7 +479,7 @@ export function ContactFormArea() {
 								</div>
 								<div className="mt-3 flex items-start gap-2 text-sm text-muted-foreground">
 									<MapPin className="mt-0.5 h-4 w-4 flex-shrink-0" />
-									<span>Nirmali, Bihar</span>
+									<span>Nirmali, Supaul, Bihar</span>
 								</div>
 							</div>
 						</motion.div>

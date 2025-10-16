@@ -4,8 +4,6 @@ import { FeaturesSection } from '@/components/home/FeaturesSection';
 import { TechStackSection } from '@/components/home/TechStackSection';
 import { HowItWorksSection } from '@/components/home/HowItWorksSection';
 import { DemoShowcase } from '@/components/home/DemoShowcase';
-// import { StatsSection } from '@/components/home/StatsSection';
-// import { TestimonialsSection } from '@/components/home/TestimonialsSection'; // Removed for launch
 import { CtaSection } from '@/components/ui/CtaSection';
 import { TechAdvantageSection } from '@/components/home/TechAdvantageSection';
 import type { Metadata } from 'next';
@@ -46,12 +44,10 @@ export default function HomePage() {
 	return (
 		<>
 			<HeroSection />
-			{/* <StatsSection /> */}
 			<FeaturesSection />
 			<DemoShowcase />
 			<TechAdvantageSection />
 			<HowItWorksSection />
-			{/* <TestimonialsSection /> - Removed for launch, will add once we have real testimonials */}
 			<TechStackSection />
 			<CtaSection
 				heading="Ready to Transform Your School's Digital Presence?"

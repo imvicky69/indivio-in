@@ -12,7 +12,6 @@ import { CtaSection } from '@/components/ui/CtaSection';
 
 import { ValueSection } from '@/components/why-indivio/ValueSection';
 import { UnifiedAdvantage } from '@/components/why-indivio/UnifiedAdvantage';
-// import { SocialProof } from '@/components/why-indivio/SocialProof';
 import { FindYourFit } from '@/components/why-indivio/FindYourFit';
 // Step 1: Set the page-specific SEO metadata
 // Revalidate every 1 minute (60 seconds)
@@ -59,7 +58,6 @@ export default function WhyIndivioPage() {
 			<WhyTrustUs />
 			<FounderMessage />
 			<UnifiedAdvantage />
-			{/* <SocialProof /> */}
 			<LaunchProcess />
 			<FindYourFit />
 			<CtaSection {...whyIndivioCtaProps} />

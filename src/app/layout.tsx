@@ -169,7 +169,7 @@ export default function RootLayout({
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
-      ratingCount: '56',
+      ratingCount: '187',
     },
     publisher: {
       '@type': 'Organization',
