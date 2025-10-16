@@ -10,14 +10,15 @@ export const metadata: Metadata = {
 };
 
 interface CheckoutPageProps {
-	searchParams: { [key: string]: string | string[] | undefined };
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export default async function CheckoutPage({
 	searchParams,
 }: CheckoutPageProps) {
-	// Access searchParams directly without destructuring
-	const planParam = searchParams.plan;
+	// Await searchParams since it's now a Promise in Next.js 15
+	const resolvedSearchParams = await searchParams;
+	const planParam = resolvedSearchParams.plan;
 	const planId = Array.isArray(planParam) ? planParam[0] : planParam;
 
 	if (!planId) {

@@ -1,6 +1,6 @@
 'use client';
 import { Gift } from 'lucide-react';
-import { Offer } from '@/lib/plans';
+import { Offer } from '@/lib/offers';
 import { motion } from 'framer-motion';
 
 interface OffersSectionProps {

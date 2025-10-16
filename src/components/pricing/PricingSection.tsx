@@ -1,6 +1,7 @@
 'use client';
 
-import { Plan, Offer } from '@/lib/plans';
+import { Plan } from '@/lib/plans';
+import { Offer } from '@/lib/offers';
 import { Check, Star } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { motion } from 'framer-motion';

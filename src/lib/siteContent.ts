@@ -7,6 +7,16 @@ const defaultSiteContent = {
 	pricing: {
 		title: 'Simple, Transparent Pricing',
 		description: 'Choose the plan that fits your needs.',
+		heroTitle: 'Simple, Transparent Pricing',
+		heroSubtitle:
+			'Choose the plan that fits your needs. All plans include hosting, security, and ongoing support.',
+		sectionIntro:
+			'Select the perfect plan for your educational institution. All plans include professional design, hosting, security, and ongoing support.',
+		trustBadges: ['14-day free trial', 'No setup fees', 'Cancel anytime'],
+		offerBanner: {
+			enabled: false,
+			text: 'Limited time offer: 20% off first month!',
+		},
 		faqs: [
 			{
 				question: 'What payment methods do you accept?',
