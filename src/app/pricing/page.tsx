@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { getPricingPlans, getOffers } from '@/lib/plans';
-import siteContent from '@/lib/siteContent';
+import { getPricingPlans } from '@/lib/plans';
+import { getOffers } from '@/lib/offers';
+import { getSiteContentBySection, PricingContent } from '@/lib/siteContent';
 import { PricingCard } from '@/components/pricing/PricingCard';
 import { PricingFAQ } from '@/components/pricing/PricingFAQ';
 import { OffersSection } from '@/components/pricing/OffersSection';
@@ -42,10 +43,38 @@ export const metadata: Metadata = {
 };
 
 export default async function PricingPage() {
-	// Fetch data on the server
-	const plans = await getPricingPlans();
-	const offers = await getOffers();
-	const content = siteContent.pricing;
+	// Fetch data on the server from Firestore
+	console.log('Fetching pricing page data...');
+
+	// Add error handling to see what might be failing
+	let plans: Array<import('@/lib/plans').Plan> = [];
+	let offers: Array<import('@/lib/offers').Offer> = [];
+	let content: PricingContent;
+
+	try {
+		plans = await getPricingPlans();
+		console.log('Plans fetched:', plans.length, plans);
+	} catch (error) {
+		console.error('Error fetching plans:', error);
+		plans = [];
+	}
+
+	try {
+		offers = await getOffers();
+		console.log('Offers fetched:', offers.length);
+	} catch (error) {
+		console.error('Error fetching offers:', error);
+		offers = [];
+	}
+
+	try {
+		content = await getSiteContentBySection<PricingContent>('pricing');
+		console.log('Content fetched successfully');
+	} catch (error) {
+		console.error('Error fetching content:', error);
+		// Fallback to default content from the import
+		content = (await import('@/lib/siteContent')).defaultSiteContent.pricing;
+	}
 
 	return (
 		<>

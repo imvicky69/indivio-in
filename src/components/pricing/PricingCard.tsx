@@ -138,7 +138,7 @@ export function PricingCard({ plan, index }: PricingCardProps) {
 				{/* CTA Buttons */}
 				<div className="space-y-3">
 					<Button
-						href={`/booking/${plan.id}`}
+						href={`/checkout?plan=${plan.id}`}
 						variant={plan.isMostPopular ? 'primary' : 'secondary'}
 						className={`w-full rounded-xl py-4 text-base font-semibold shadow-lg transition-all duration-300 ${
 							plan.isMostPopular

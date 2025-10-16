@@ -1,5 +1,15 @@
-import plansData from './plans.json';
-import offersData from './offers.json';
+import { db } from './firebase';
+import {
+	collection,
+	getDocs,
+	doc,
+	getDoc,
+	query,
+	where,
+	orderBy,
+} from 'firebase/firestore';
+import { getOffers, Offer } from './offers';
+import { sanitizeFirestoreData } from './utils/firestore-helpers';
 
 export interface PlanIncluded {
 	hosting: string;
@@ -50,25 +60,53 @@ export interface Plan {
 	order: number;
 }
 
-export interface Offer {
-	id: string;
-	code: string;
-	title: string;
-	description: string;
-	discountPercent: number;
-	appliesTo: string[];
-	validUntil: string;
-	active: boolean;
-	badge: string;
-}
+// Offer type is now imported from './offers'
 
-// Fetches all pricing plans from local JSON, sorted by the 'order' field
+// Import the local plans JSON as fallback
+import plansJson from './plans.json';
+
+// Fetches all pricing plans from Firestore, sorted by the 'order' field
 export async function getPricingPlans(): Promise<Plan[]> {
 	try {
-		// Clone and sort by order to preserve the API shape
-		const plans: Plan[] = (plansData as Plan[])
-			.slice()
-			.sort((a, b) => a.order - b.order);
+		console.log('Getting pricing plans from Firestore...');
+
+		// Check if Firebase is properly initialized
+		if (!db) {
+			console.error('Firebase DB is not initialized');
+			console.log('Falling back to local JSON data');
+			return plansJson as Plan[];
+		}
+
+		console.log('Firebase DB is initialized, fetching plans...');
+
+		// Reference to plans collection
+		const plansCollection = collection(db, 'plans');
+		console.log('Plans collection reference created');
+
+		// Query plans ordered by 'order' field
+		const plansQuery = query(plansCollection, orderBy('order', 'asc'));
+		console.log('Executing query to Firestore...');
+
+		const plansSnapshot = await getDocs(plansQuery);
+		console.log(`Retrieved ${plansSnapshot.size} plans from Firestore`);
+
+		// If no plans found in Firestore, use local JSON as fallback
+		if (plansSnapshot.size === 0) {
+			console.log('No plans found in Firestore, using local JSON data');
+			return plansJson as Plan[];
+		}
+
+		// Convert snapshot to Plan objects and sanitize Firestore timestamps
+		const plans: Plan[] = [];
+		plansSnapshot.forEach((doc) => {
+			// Get the data and properly sanitize it
+			const rawData = doc.data();
+
+			// Sanitize Firestore-specific objects like Timestamps
+			const planData = sanitizeFirestoreData(rawData) as Plan;
+			planData.id = doc.id; // Ensure ID is set
+			plans.push(planData);
+		});
 
 		// Get active offers
 		const offers = await getOffers();
@@ -94,16 +132,31 @@ export async function getPricingPlans(): Promise<Plan[]> {
 		return plans;
 	} catch (error) {
 		console.error('Error reading pricing plans: ', error);
-		return [];
+		console.log('Falling back to local JSON data after error');
+		return plansJson as Plan[];
 	}
 }
 
-// Fetches a single plan by its ID (slug) from local JSON
+// Fetches a single plan by its ID from Firestore
 export async function getPlanById(id: string): Promise<Plan | null> {
 	try {
-		const plan = (plansData as Plan[]).find((p) => p.id === id) || null;
+		// Check if Firebase is properly initialized
+		if (!db) {
+			console.error('Firebase DB is not initialized');
+			console.log('Falling back to local JSON data for plan by ID');
+			const plan = plansJson.find((p) => p.id === id);
+			return plan ? (plan as Plan) : null;
+		}
 
-		if (plan) {
+		// Reference to the specific plan document
+		const planRef = doc(db, 'plans', id);
+		const planDoc = await getDoc(planRef);
+
+		if (planDoc.exists()) {
+			const rawData = planDoc.data();
+			const plan = sanitizeFirestoreData(rawData) as Plan;
+			plan.id = planDoc.id; // Ensure ID is set
+
 			// Get active offers
 			const offers = await getOffers();
 			const activeLaunchOffer = offers.find(
@@ -122,21 +175,17 @@ export async function getPlanById(id: string): Promise<Plan | null> {
 					discountedPrice: Math.round(plan.price * (1 - discountPercent)),
 				};
 			}
+
+			return plan;
 		}
 
-		return plan;
+		return null;
 	} catch (error) {
 		console.error(`Error reading plan ${id}: `, error);
-		return null;
+		console.log('Falling back to local JSON data after error');
+		const plan = plansJson.find((p) => p.id === id);
+		return plan ? (plan as Plan) : null;
 	}
 }
 
-// Fetches all active offers from local JSON
-export async function getOffers(): Promise<Offer[]> {
-	try {
-		return offersData as Offer[];
-	} catch (error) {
-		console.error('Error reading offers: ', error);
-		return [];
-	}
-}
+// getOffers is now imported from './offers'
