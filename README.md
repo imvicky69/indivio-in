@@ -62,24 +62,26 @@ See `package.json` for the full list.
 
 ## Managing Data in Firestore
 
-All site data (plans, offers, and site content) is now stored in Firestore. The local JSON files serve as the source of truth and fallback, and changes should be made there first before syncing to Firestore.
+All site data (plans, offers, and site content) is stored in Firestore. In the production environment, data is exclusively managed through Firestore.
 
-### Workflow for updating data
+### Firestore Data Structure
 
-1. Edit the data files in `src/lib/`:
-   - `plans.json` - Pricing plans data
-   - `offers.json` - Promotional offers
-   - `siteContent.json` - Website content by section
+The application uses the following Firestore collections:
 
-2. Make sure your `serviceAccountKey.json` in the root directory has valid credentials
+1. **plans**: Contains all pricing plans with their features and pricing details
+2. **offers**: Promotional offers and discounts currently active
+3. **siteContent**: Website content organized by section
+4. **users**: User account information and preferences
+5. **payments**: Payment transaction records and status
 
-3. Run one of the following commands to sync the JSON data to Firestore:
-   - `npm run upload-plans` - Upload only plans
-   - `npm run upload-offers` - Upload only offers
-   - `npm run upload-content` - Upload only site content
-   - `npm run upload-all` - Upload all data at once (recommended)
+### Production Data Management
 
-4. The website will automatically fetch the latest data from Firestore
+In the production environment:
+
+1. All data is managed directly through the Firebase Console or Admin Dashboard
+2. Changes to content should be made through the Admin Dashboard
+3. The application fetches data from Firestore with appropriate error handling and fallbacks
+4. Service account credentials are managed through environment variables
 
 ### Firebase Service Account
 
@@ -310,6 +312,7 @@ This project follows a structured branch strategy:
 ### Creating a Production Build
 
 1. Create a build branch from dev:
+
    ```bash
    git checkout dev
    git pull
@@ -317,28 +320,38 @@ This project follows a structured branch strategy:
    ```
 
 2. Clean up development files:
+
    ```bash
-   # Remove any development-only files
+   # Remove development-only files and directories
    rm -rf .vscode/ scripts/ test/
+
+   # Remove local data files (data will be fetched from Firestore in production)
+   rm -rf src/lib/*.json
    ```
 
-3. Optimize package.json (already done in this branch):
-   - Remove development scripts
+3. Optimize package.json for production:
+   - Keep only essential scripts: build, postbuild, start
    - Move required dev dependencies to dependencies
-   - Keep only production-necessary scripts
+   - Remove all development scripts and references
 
-4. Build the application:
+4. Update Firestore references:
+   - Make sure all code uses Firestore data instead of local JSON
+   - Ensure proper error handling for Firestore operations
+
+5. Build the application:
+
    ```bash
    npm ci
    npm run build
    ```
 
-5. Test the production build:
+6. Test the production build:
+
    ```bash
    npm start
    ```
 
-6. Merge to main:
+7. Merge to main:
    ```bash
    git checkout main
    git merge build

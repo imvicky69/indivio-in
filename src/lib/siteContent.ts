@@ -1,7 +1,42 @@
 import { db } from './firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import defaultSiteContent from './siteContent.json';
 import { sanitizeFirestoreData } from './utils/firestore-helpers';
+
+// Default fallback site content
+const defaultSiteContent = {
+	pricing: {
+		title: 'Simple, Transparent Pricing',
+		description: 'Choose the plan that fits your needs.',
+		faqs: [
+			{
+				question: 'What payment methods do you accept?',
+				answer: 'We accept major credit/debit cards and online banking.',
+			},
+			{
+				question: 'Can I upgrade my plan later?',
+				answer:
+					'Yes, you can upgrade at any time. The new pricing will be prorated.',
+			},
+			{
+				question: 'Is there a free trial?',
+				answer: 'We offer a 14-day trial on all plans.',
+			},
+		],
+	},
+	home: {
+		heroTitle: 'Simplify School Management',
+		heroDescription: 'All-in-one platform for educational institutions.',
+		ctaText: 'Get Started',
+	},
+	features: {
+		title: 'Powerful Features',
+		description: 'Everything you need to manage your school effectively.',
+	},
+	contact: {
+		title: 'Get In Touch',
+		description: "We're here to help you get started.",
+	},
+};
 
 // Import default content for type definition
 export type PricingContent = typeof defaultSiteContent.pricing;
@@ -95,7 +130,7 @@ export async function getAllSiteContent(): Promise<SiteContentType> {
 	return content as SiteContentType;
 }
 
-// For backward compatibility, we keep the default export as the local JSON content
+// For backward compatibility, we keep the default export as the default content
 export default typedContent;
 
 // Also export the default content for direct access when needed

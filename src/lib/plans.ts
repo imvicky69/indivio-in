@@ -60,10 +60,62 @@ export interface Plan {
 	order: number;
 }
 
-// Offer type is now imported from './offers'
-
-// Import the local plans JSON as fallback
-import plansJson from './plans.json';
+// Default fallback plan in case Firestore is unavailable
+const fallbackPlans: Plan[] = [
+	{
+		id: 'basic',
+		name: 'Basic',
+		price: 2999,
+		setupFee: 1999,
+		pricePeriod: 'month',
+		description: 'Essential features for small schools',
+		isMostPopular: false,
+		features: [
+			'School Website',
+			'Admission System',
+			'Basic Analytics',
+			'Email Support',
+		],
+		order: 1,
+	},
+	{
+		id: 'standard',
+		name: 'Standard',
+		price: 4999,
+		setupFee: 2999,
+		pricePeriod: 'month',
+		badge: 'MOST POPULAR',
+		description: 'Complete solution for growing institutions',
+		isMostPopular: true,
+		features: [
+			'Everything in Basic',
+			'Student Management',
+			'Staff Management',
+			'Attendance System',
+			'Fee Management',
+			'Priority Support',
+		],
+		order: 2,
+	},
+	{
+		id: 'premium',
+		name: 'Premium',
+		price: 7999,
+		setupFee: 4999,
+		pricePeriod: 'month',
+		description: 'Advanced features for larger institutions',
+		isMostPopular: false,
+		features: [
+			'Everything in Standard',
+			'Custom Branding',
+			'API Access',
+			'Advanced Analytics',
+			'Dedicated Support',
+			'Premium Hosting',
+		],
+		order: 3,
+	},
+];
 
 // Fetches all pricing plans from Firestore, sorted by the 'order' field
 export async function getPricingPlans(): Promise<Plan[]> {
@@ -73,8 +125,8 @@ export async function getPricingPlans(): Promise<Plan[]> {
 		// Check if Firebase is properly initialized
 		if (!db) {
 			console.error('Firebase DB is not initialized');
-			console.log('Falling back to local JSON data');
-			return plansJson as Plan[];
+			console.log('Using fallback plans data');
+			return fallbackPlans;
 		}
 
 		console.log('Firebase DB is initialized, fetching plans...');
@@ -90,10 +142,10 @@ export async function getPricingPlans(): Promise<Plan[]> {
 		const plansSnapshot = await getDocs(plansQuery);
 		console.log(`Retrieved ${plansSnapshot.size} plans from Firestore`);
 
-		// If no plans found in Firestore, use local JSON as fallback
+		// If no plans found in Firestore, use fallback data
 		if (plansSnapshot.size === 0) {
-			console.log('No plans found in Firestore, using local JSON data');
-			return plansJson as Plan[];
+			console.log('No plans found in Firestore, using fallback data');
+			return fallbackPlans;
 		}
 
 		// Convert snapshot to Plan objects and sanitize Firestore timestamps
@@ -132,8 +184,8 @@ export async function getPricingPlans(): Promise<Plan[]> {
 		return plans;
 	} catch (error) {
 		console.error('Error reading pricing plans: ', error);
-		console.log('Falling back to local JSON data after error');
-		return plansJson as Plan[];
+		console.log('Using fallback plans data after error');
+		return fallbackPlans;
 	}
 }
 
@@ -143,9 +195,9 @@ export async function getPlanById(id: string): Promise<Plan | null> {
 		// Check if Firebase is properly initialized
 		if (!db) {
 			console.error('Firebase DB is not initialized');
-			console.log('Falling back to local JSON data for plan by ID');
-			const plan = plansJson.find((p) => p.id === id);
-			return plan ? (plan as Plan) : null;
+			console.log('Using fallback plans data for plan by ID');
+			const plan = fallbackPlans.find((p) => p.id === id);
+			return plan ? plan : null;
 		}
 
 		// Reference to the specific plan document
@@ -179,12 +231,14 @@ export async function getPlanById(id: string): Promise<Plan | null> {
 			return plan;
 		}
 
-		return null;
+		// If plan not found in Firestore, check fallback data
+		const fallbackPlan = fallbackPlans.find((p) => p.id === id);
+		return fallbackPlan ? fallbackPlan : null;
 	} catch (error) {
 		console.error(`Error reading plan ${id}: `, error);
-		console.log('Falling back to local JSON data after error');
-		const plan = plansJson.find((p) => p.id === id);
-		return plan ? (plan as Plan) : null;
+		console.log('Using fallback plans data after error');
+		const plan = fallbackPlans.find((p) => p.id === id);
+		return plan ? plan : null;
 	}
 }
 

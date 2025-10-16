@@ -1,6 +1,5 @@
 import { db } from './firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import offersJson from './offers.json';
 import { sanitizeFirestoreData } from './utils/firestore-helpers';
 
 export interface Offer {
@@ -17,14 +16,40 @@ export interface Offer {
 	updatedAt?: any;
 }
 
+// Fallback offers in case Firestore is unavailable
+const fallbackOffers: Offer[] = [
+	{
+		id: 'launch17',
+		code: 'LAUNCH17',
+		title: 'Launch Offer',
+		description: '17% off on all plans during our launch period',
+		discountPercent: 17,
+		appliesTo: ['basic', 'standard', 'premium'],
+		validUntil: '2026-01-01',
+		active: true,
+		badge: 'LIMITED TIME',
+	},
+	{
+		id: 'edu25',
+		code: 'EDU25',
+		title: 'Education Discount',
+		description: '25% off for educational institutions',
+		discountPercent: 25,
+		appliesTo: ['basic', 'standard'],
+		validUntil: '2026-06-30',
+		active: false,
+		badge: 'EDUCATION',
+	},
+];
+
 // Fetches all active offers from Firestore
 export async function getOffers(): Promise<Offer[]> {
 	try {
 		// Check if Firebase is properly initialized
 		if (!db) {
 			console.error('Firebase DB is not initialized');
-			console.log('Falling back to local JSON data for offers');
-			return offersJson.filter((o) => o.active) as Offer[];
+			console.log('Using fallback offers data');
+			return fallbackOffers.filter((o) => o.active);
 		}
 
 		// Reference to offers collection
@@ -46,17 +71,17 @@ export async function getOffers(): Promise<Offer[]> {
 			offers.push(offerData);
 		});
 
-		// If no offers found in Firestore, use local JSON as fallback
+		// If no offers found in Firestore, use fallback data
 		if (offers.length === 0) {
-			console.log('No offers found in Firestore, using local JSON data');
-			return offersJson.filter((o) => o.active) as Offer[];
+			console.log('No offers found in Firestore, using fallback data');
+			return fallbackOffers.filter((o) => o.active);
 		}
 
 		return offers;
 	} catch (error) {
 		console.error('Error reading offers: ', error);
-		console.log('Falling back to local JSON data after error');
-		return offersJson.filter((o) => o.active) as Offer[];
+		console.log('Using fallback data after error');
+		return fallbackOffers.filter((o) => o.active);
 	}
 }
 
