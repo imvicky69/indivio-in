@@ -6,6 +6,16 @@ const nextConfig: NextConfig = {
 		ignoreDuringBuilds: true,
 	},
 	/* config options here */
+
+	async rewrites() {
+		return [
+			{
+				source: '/api/:path*',
+				destination:
+					'https://asia-south1-indivio-in.cloudfunctions.net/api/api/:path*',
+			},
+		];
+	},
 };
 
 export default withPWA({

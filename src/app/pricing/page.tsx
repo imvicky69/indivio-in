@@ -7,6 +7,7 @@ import { PricingFAQ } from '@/components/pricing/PricingFAQ';
 import { OffersSection } from '@/components/pricing/OffersSection';
 import { ServiceHighlights } from '@/components/pricing/ServiceHighlights';
 import { AddOnsSection } from '@/components/pricing/AddOnsSection';
+import { TestPaymentSection } from '@/components/pricing/TestPaymentSection';
 
 // Ensure this page is rendered dynamically on every request
 export const dynamic = 'force-dynamic';
@@ -174,6 +175,9 @@ export default async function PricingPage() {
 
 			{/* Pricing FAQs */}
 			<PricingFAQ />
+
+			{/* Test Payment Section */}
+			<TestPaymentSection />
 		</>
 	);
 }

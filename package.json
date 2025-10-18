@@ -12,6 +12,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbopack",
+		"dev:proxy": "next dev --turbopack",
 		"build": "next build",
 		"postbuild": "next-sitemap",
 		"start": "next start"
