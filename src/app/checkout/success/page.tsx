@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { Button } from '@/components/ui/Button';
 import { checkPhonePePaymentStatus } from '@/lib/phonepe';
 
-export default function SuccessPage() {
+function SuccessPageContent() {
 	const searchParams = useSearchParams();
 	const orderId = searchParams.get('orderId');
 	const [paymentStatus, setPaymentStatus] = useState<string>('');
@@ -304,5 +304,33 @@ export default function SuccessPage() {
 				</div>
 			</div>
 		</>
+	);
+}
+
+function SuccessPageLoading() {
+	return (
+		<>
+			<div className="h-20"></div>
+			<div className="flex min-h-[calc(100vh-5rem)] items-center bg-gradient-to-b from-white to-muted/30">
+				<div className="container mx-auto px-6 py-16">
+					<div className="mx-auto max-w-2xl text-center">
+						<div className="flex flex-col items-center justify-center">
+							<div className="mb-6 h-24 w-24 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
+							<h2 className="text-xl font-semibold">
+								Loading payment status...
+							</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	);
+}
+
+export default function SuccessPage() {
+	return (
+		<Suspense fallback={<SuccessPageLoading />}>
+			<SuccessPageContent />
+		</Suspense>
 	);
 }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://indivio.in/terms-and-conditions</loc><lastmod>2025-10-16T14:01:08.740Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://indivio.in/contact</loc><lastmod>2025-10-16T14:01:08.741Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://indivio.in/checkout/success</loc><lastmod>2025-10-16T14:01:08.741Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://indivio.in/why-indivio</loc><lastmod>2025-10-16T14:01:08.741Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://indivio.in/features</loc><lastmod>2025-10-16T14:01:08.741Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://indivio.in</loc><lastmod>2025-10-16T14:01:08.741Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://indivio.in/privacy-policy</loc><lastmod>2025-10-16T14:01:08.741Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://indivio.in/shipping-policy</loc><lastmod>2025-10-16T14:01:08.741Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://indivio.in/refund-policy</loc><lastmod>2025-10-16T14:01:08.741Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://indivio.in</loc><lastmod>2025-10-18T06:29:56.689Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://indivio.in/checkout/success</loc><lastmod>2025-10-18T06:29:56.690Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://indivio.in/why-indivio</loc><lastmod>2025-10-18T06:29:56.690Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://indivio.in/features</loc><lastmod>2025-10-18T06:29:56.690Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://indivio.in/contact</loc><lastmod>2025-10-18T06:29:56.690Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://indivio.in/terms-and-conditions</loc><lastmod>2025-10-18T06:29:56.690Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://indivio.in/privacy-policy</loc><lastmod>2025-10-18T06:29:56.690Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://indivio.in/refund-policy</loc><lastmod>2025-10-18T06:29:56.690Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://indivio.in/shipping-policy</loc><lastmod>2025-10-18T06:29:56.690Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 <url><loc>https://indivio.in/pricing</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
 <url><loc>https://indivio.in/plans/starter</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 <url><loc>https://indivio.in/plans/professional</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
