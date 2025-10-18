@@ -174,8 +174,6 @@ export default async function PricingPage() {
 
 			{/* Pricing FAQs */}
 			<PricingFAQ />
-
-
 		</>
 	);
 }

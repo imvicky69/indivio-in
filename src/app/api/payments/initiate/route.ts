@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/firebase';
-import {
-	collection,
-	addDoc,
-	serverTimestamp,
-} from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export async function POST(request: NextRequest) {
 	try {
@@ -52,15 +48,17 @@ export async function POST(request: NextRequest) {
 				});
 				transactionDocId = docRef.id;
 			} else {
-				console.warn('Firestore `db` not initialized; skipping transaction save');
+				console.warn(
+					'Firestore `db` not initialized; skipping transaction save'
+				);
 			}
 		} catch (fireErr) {
 			console.error('Error saving transaction to Firestore:', fireErr);
 			// continue - we don't want to fail the payment initiation if logging fails
 		}
 
-	// Attach transactionDocId for frontend reference
-	return NextResponse.json({ ...data, transactionDocId });
+		// Attach transactionDocId for frontend reference
+		return NextResponse.json({ ...data, transactionDocId });
 	} catch (error: any) {
 		console.error('Error initiating payment:', error);
 		return NextResponse.json(
