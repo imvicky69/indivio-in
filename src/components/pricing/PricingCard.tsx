@@ -1,8 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Check, Sparkles } from 'lucide-react';
+import { Check, Sparkles, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { Tooltip } from '@/components/ui/Tooltip';
+import { planValuePoints, renewalTooltipText } from '@/lib/pricing-config';
 import type { Plan } from '@/lib/plans';
 
 interface PricingCardProps {
@@ -82,10 +84,13 @@ export function PricingCard({ plan, index }: PricingCardProps) {
 
 					{/* Annual Maintenance */}
 					<div className="flex items-center justify-between rounded-lg bg-muted/50 p-4">
-						<div>
-							<p className="text-sm font-medium text-muted-foreground">
-								Annual Maintenance
-							</p>
+						<div className="flex-1">
+							<div className="flex items-center gap-2">
+								<p className="text-sm font-medium text-muted-foreground">
+									Annual Maintenance
+								</p>
+								<Tooltip content={renewalTooltipText.year1} />
+							</div>
 							<p className="text-2xl font-bold text-foreground">
 								₹{plan.price.toLocaleString('en-IN')}
 								<span className="text-sm font-normal text-muted-foreground">
@@ -105,12 +110,13 @@ export function PricingCard({ plan, index }: PricingCardProps) {
 									₹{plan.renewalPrice.toLocaleString('en-IN')}/year
 								</span>
 							</span>
+							<Tooltip content={renewalTooltipText.year2Plus} />
 						</div>
 					)}
 				</div>
 
 				{/* Features List */}
-				<div className="mb-8 flex-1">
+				<div className="mb-6 flex-1">
 					<h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
 						Key Features
 					</h4>
@@ -134,6 +140,33 @@ export function PricingCard({ plan, index }: PricingCardProps) {
 						))}
 					</ul>
 				</div>
+
+				{/* ROI/Value Points */}
+				{planValuePoints[plan.id.toLowerCase()] && (
+					<div className="mb-8 rounded-lg border-2 border-primary/20 bg-primary/5 p-4">
+						<div className="mb-3 flex items-center gap-2">
+							<TrendingUp className="h-4 w-4 text-primary" />
+							<h4 className="text-sm font-semibold text-primary">
+								Why Choose This Plan
+							</h4>
+						</div>
+						<ul className="space-y-2">
+							{planValuePoints[plan.id.toLowerCase()].map((point, idx) => (
+								<motion.li
+									key={idx}
+									initial={{ opacity: 0, x: -10 }}
+									whileInView={{ opacity: 1, x: 0 }}
+									viewport={{ once: true }}
+									transition={{ delay: 0.9 + idx * 0.05 }}
+									className="flex items-start gap-2 text-xs text-foreground"
+								>
+									<span className="mt-0.5 text-primary">•</span>
+									<span className="leading-relaxed">{point}</span>
+								</motion.li>
+							))}
+						</ul>
+					</div>
+				)}
 
 				{/* CTA Buttons */}
 				<div className="space-y-3">

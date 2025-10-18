@@ -7,6 +7,10 @@ import { PricingFAQ } from '@/components/pricing/PricingFAQ';
 import { OffersSection } from '@/components/pricing/OffersSection';
 import { ServiceHighlights } from '@/components/pricing/ServiceHighlights';
 import { AddOnsSection } from '@/components/pricing/AddOnsSection';
+import { PricingComparisonTable } from '@/components/pricing/PricingComparisonTable';
+import { HowItWorks } from '@/components/pricing/HowItWorks';
+import { BuiltWithIndivio } from '@/components/pricing/BuiltWithIndivio';
+import { Testimonials } from '@/components/pricing/Testimonials';
 
 // Ensure this page is rendered dynamically on every request
 export const dynamic = 'force-dynamic';
@@ -14,7 +18,7 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
 	title: 'Educational Website Solutions - Transparent Pricing | Indivio',
 	description:
-		'Professional, affordable website solutions for educational institutions with hassle-free hosting, security, support, and easy content management. Choose from three tailored plans: Starter, Professional, and Enterprise.',
+		"Compare Indivio's website solutions for schools — from Starter to Enterprise plans. Transparent pricing, no hidden costs. Professional design, hosting, and support included.",
 	keywords: [
 		'education website solutions',
 		'educational website design',
@@ -26,11 +30,13 @@ export const metadata: Metadata = {
 		'SEO for educational institutions',
 		'educational website builder',
 		'educational website maintenance',
+		'school website pricing',
+		'education website comparison',
 	],
 	openGraph: {
 		title: 'Professional Educational Website Solutions | Transparent Pricing',
 		description:
-			'Get a professional website for your educational institution with hassle-free hosting, management dashboard, and ongoing support. Choose from three tailored plans.',
+			"Compare Indivio's website solutions for schools — from Starter to Enterprise plans. Transparent pricing, no hidden costs.",
 		images: [
 			{
 				url: '/pricing-plans.png',
@@ -163,14 +169,26 @@ export default async function PricingPage() {
 				</div>
 			</section>
 
+			{/* Pricing Comparison Table */}
+			<PricingComparisonTable plans={plans} />
+
+			{/* How It Works Section */}
+			<HowItWorks />
+
 			{/* Service Highlights */}
 			<ServiceHighlights />
+
+			{/* Built with Indivio Showcase */}
+			<BuiltWithIndivio />
 
 			{/* Add-ons Section */}
 			<AddOnsSection plans={plans} />
 
 			{/* Current Offers */}
 			{offers && offers.length > 0 && <OffersSection offers={offers} />}
+
+			{/* Testimonials */}
+			<Testimonials />
 
 			{/* Pricing FAQs */}
 			<PricingFAQ />
