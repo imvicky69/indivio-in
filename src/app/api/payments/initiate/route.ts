@@ -1,4 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { db } from '@/lib/firebase';
+import {
+	collection,
+	addDoc,
+	serverTimestamp,
+} from 'firebase/firestore';
 
 export async function POST(request: NextRequest) {
 	try {
@@ -29,7 +35,32 @@ export async function POST(request: NextRequest) {
 		}
 
 		const data = await response.json();
-		return NextResponse.json(data);
+
+		// Persist a transaction record in Firestore (if available)
+		let transactionDocId: string | null = null;
+		try {
+			if (db) {
+				const docRef = await addDoc(collection(db, 'transactions'), {
+					orderId: data.data?.orderId || paymentData.merchantOrderId || null,
+					transactionId: data.data?.transactionId || null,
+					amount: data.data?.amount || paymentData.amount || null,
+					status: 'PENDING',
+					redirectUrl: data.data?.redirectUrl || null,
+					metadata: paymentData,
+					createdAt: serverTimestamp(),
+					updatedAt: serverTimestamp(),
+				});
+				transactionDocId = docRef.id;
+			} else {
+				console.warn('Firestore `db` not initialized; skipping transaction save');
+			}
+		} catch (fireErr) {
+			console.error('Error saving transaction to Firestore:', fireErr);
+			// continue - we don't want to fail the payment initiation if logging fails
+		}
+
+	// Attach transactionDocId for frontend reference
+	return NextResponse.json({ ...data, transactionDocId });
 	} catch (error: any) {
 		console.error('Error initiating payment:', error);
 		return NextResponse.json(

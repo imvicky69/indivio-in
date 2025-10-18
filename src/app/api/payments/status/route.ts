@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { db } from '@/lib/firebase';
+import { collection, query, where, getDocs, doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 
 export async function GET(request: NextRequest) {
 	try {
@@ -39,6 +41,26 @@ export async function GET(request: NextRequest) {
 		}
 
 		const data = await response.json();
+
+		// If payment is successful, update the Firestore transaction record
+		try {
+			if (db && data && data.data && (data.data.state === 'COMPLETED' || data.data.state === 'SUCCESS')) {
+				// Find transaction by orderId and update
+				const txQuery = query(collection(db, 'transactions'), where('orderId', '==', orderId));
+				const snapshot = await getDocs(txQuery);
+				for (const docSnap of snapshot.docs) {
+					const docRef = doc(db, 'transactions', docSnap.id);
+					await updateDoc(docRef, {
+						status: 'COMPLETED',
+						paymentDetails: data.data,
+						updatedAt: serverTimestamp(),
+					});
+				}
+			}
+		} catch (fireErr) {
+			console.error('Error updating transaction status in Firestore:', fireErr);
+		}
+
 		return NextResponse.json(data);
 	} catch (error: any) {
 		console.error('Error checking payment status:', error);

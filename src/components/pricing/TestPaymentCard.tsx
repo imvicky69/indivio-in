@@ -129,7 +129,9 @@ export function TestPaymentCard() {
 
 				if (paymentState === 'COMPLETED' || paymentState === 'SUCCESS') {
 					// Payment successful - redirect to success page
-					router.push(`/checkout/success?orderId=${orderId}&status=${paymentState}`);
+					router.push(
+						`/checkout/success?orderId=${orderId}&status=${paymentState}`
+					);
 				} else if (paymentState === 'PENDING') {
 					// Payment is pending
 					router.push(`/checkout/success?orderId=${orderId}&status=PENDING`);
