@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
 import { Button } from '@/components/ui/Button';
-import { checkPhonePePaymentStatus } from '@/lib/phonepe';
 
 function SuccessPageContent() {
 	const searchParams = useSearchParams();
@@ -29,7 +28,10 @@ function SuccessPageContent() {
 			}
 
 			try {
-				const result = await checkPhonePePaymentStatus(orderId);
+				// Call the server-side API endpoint
+				const response = await fetch(`/api/payments/status?orderId=${orderId}`);
+				const result = await response.json();
+				
 				if (result.success) {
 					const state = result.data.state;
 					setPaymentStatus(state);

@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { v4 as uuidv4 } from 'uuid';
-import { initiatePhonePePayment } from '@/lib/phonepe';
 import { PhonePeCheckout } from '../checkout/PhonePeCheckout';
 
 export function TestPaymentCard() {
@@ -45,19 +44,32 @@ export function TestPaymentCard() {
 				password: 'test1234', // For test only
 			};
 
-			// Initiate payment through the PhonePe API
-			const response = await initiatePhonePePayment(paymentRequestData);
+			// Initiate payment through the server-side API endpoint
+			const response = await fetch('/api/payments/initiate', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(paymentRequestData),
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(errorData.message || 'Failed to initiate payment');
+			}
+
+			const result = await response.json();
 
 			console.log('Test payment initiated successfully', {
-				orderId: response.data.orderId,
-				transactionId: response.data.transactionId,
-				redirectUrl: response.data.redirectUrl,
+				orderId: result.data.orderId,
+				transactionId: result.data.transactionId,
+				redirectUrl: result.data.redirectUrl,
 			});
 
 			// Store test data with payment information in sessionStorage
 			const userData = {
-				orderId: response.data.orderId,
-				transactionId: response.data.transactionId,
+				orderId: result.data.orderId,
+				transactionId: result.data.transactionId,
 				merchantUserId,
 				email: 'test@example.com',
 				password: 'test1234',
@@ -77,7 +89,7 @@ export function TestPaymentCard() {
 
 			// Store payment data for iframe
 			setPaymentData({
-				tokenUrl: response.data.redirectUrl,
+				tokenUrl: result.data.redirectUrl,
 				userData,
 			});
 
