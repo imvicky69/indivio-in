@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 		'education management software',
 		'online school administration',
 		'low-cost school software',
-		'digital campus solution',
+		'digital campus solutions',
 		'integrated school platform',
 	],
 	openGraph: {
