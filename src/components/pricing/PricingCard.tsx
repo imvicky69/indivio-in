@@ -61,13 +61,17 @@ export function PricingCard({ plan, index }: PricingCardProps) {
 			<div className="flex flex-1 flex-col p-8">
 				{/* Header */}
 				<div className="mb-6">
-					<h3 className="mb-2 font-display text-3xl font-bold text-foreground">
+					<h3 className="mb-2 font-display text-3xl font-extrabold leading-tight text-foreground lg:text-4xl">
 						{plan.name}
 					</h3>
 					{plan.tagline && (
-						<p className="text-sm font-medium text-primary">{plan.tagline}</p>
+						<p className="text-sm font-semibold uppercase tracking-wide text-primary">
+							{plan.tagline}
+						</p>
 					)}
-					<p className="mt-3 text-base text-muted-foreground">{plan.short}</p>
+					<p className="mt-3 text-base leading-relaxed text-muted-foreground">
+						{plan.short}
+					</p>
 				</div>
 
 				{/* Pricing */}
@@ -173,20 +177,20 @@ export function PricingCard({ plan, index }: PricingCardProps) {
 					<Button
 						href={`/checkout?plan=${plan.id}`}
 						variant={plan.isMostPopular ? 'primary' : 'secondary'}
-						className={`w-full rounded-xl py-4 text-base font-semibold shadow-lg transition-all duration-300 ${
+						className={`w-full rounded-xl py-4 text-base font-bold shadow-lg transition-all duration-300 ${
 							plan.isMostPopular
-								? 'bg-primary text-primary-foreground hover:scale-[1.02] hover:shadow-xl'
-								: 'border-2 hover:scale-[1.02] hover:border-primary hover:bg-primary/5'
+								? 'bg-primary text-primary-foreground hover:scale-[1.03] hover:shadow-2xl'
+								: 'border-2 hover:scale-[1.02] hover:border-primary hover:bg-primary/5 hover:shadow-xl'
 						}`}
 					>
-						Choose {plan.name}
+						Get Started with {plan.name}
 					</Button>
 					<Button
 						href={`/plans/${plan.id}`}
 						variant="secondary"
-						className="w-full rounded-xl border border-border py-3 text-sm transition-all duration-300 hover:bg-muted"
+						className="w-full rounded-xl border border-border py-3 text-sm font-medium transition-all duration-300 hover:border-primary/50 hover:bg-muted"
 					>
-						View Full Details
+						View Full Details →
 					</Button>
 				</div>
 
