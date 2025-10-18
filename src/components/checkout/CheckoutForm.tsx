@@ -1,17 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import { Plan } from '@/lib/plans';
-import {
-	initiatePhonePePayment,
-	checkPhonePePaymentStatus,
-	registerUser,
-} from '@/lib/phonepe';
 import { PhonePeCheckout } from './PhonePeCheckout';
 
 // Define the form schema
@@ -49,7 +44,6 @@ export function CheckoutForm({ plan }: CheckoutFormProps) {
 	const [paymentData, setPaymentData] = useState<any>(null);
 	const [showPaymentIframe, setShowPaymentIframe] = useState(false);
 	const router = useRouter();
-	const searchParams = useSearchParams();
 
 	const {
 		register,
@@ -113,19 +107,32 @@ export function CheckoutForm({ plan }: CheckoutFormProps) {
 				password: data.password, // Note: In production, use more secure methods
 			};
 
-			// Initiate payment through the PhonePe API
-			const response = await initiatePhonePePayment(paymentRequestData);
+			// Initiate payment through server-side API endpoint
+			const response = await fetch('/api/payments/initiate', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(paymentRequestData),
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(errorData.message || 'Failed to initiate payment');
+			}
+
+			const result = await response.json();
 
 			console.log('Payment initiated successfully', {
-				orderId: response.data.orderId,
-				transactionId: response.data.transactionId,
-				redirectUrl: response.data.redirectUrl,
+				orderId: result.data.orderId,
+				transactionId: result.data.transactionId,
+				redirectUrl: result.data.redirectUrl,
 			});
 
 			// Store user data with payment information in sessionStorage
 			const userData = {
-				orderId: response.data.orderId,
-				transactionId: response.data.transactionId,
+				orderId: result.data.orderId,
+				transactionId: result.data.transactionId,
 				merchantUserId,
 				email: data.email,
 				password: data.password,
@@ -145,7 +152,7 @@ export function CheckoutForm({ plan }: CheckoutFormProps) {
 
 			// Store payment data for iframe
 			setPaymentData({
-				tokenUrl: response.data.redirectUrl,
+				tokenUrl: result.data.redirectUrl,
 				userData,
 			});
 
@@ -172,44 +179,21 @@ export function CheckoutForm({ plan }: CheckoutFormProps) {
 		const { orderId } = paymentData.userData;
 
 		try {
-			// Check payment status with backend
-			const statusData = await checkPhonePePaymentStatus(orderId);
+			// Call server-side endpoint to check payment status
+			const response = await fetch(`/api/payments/status?orderId=${orderId}`);
+			const statusData = await response.json();
+
 			console.log('Payment status response:', statusData);
 
 			if (statusData.success) {
 				const paymentState = statusData.data.state || '';
 
 				if (paymentState === 'COMPLETED' || paymentState === 'SUCCESS') {
-					console.log('Payment verification successful', statusData);
-
-					// Register user account with verified payment
-					const userData = {
-						...paymentData.userData,
-						paymentStatus: paymentState,
-						paymentId:
-							statusData.data.transactionId ||
-							paymentData.userData.transactionId,
-					};
-
-					try {
-						const result = await registerUser(userData);
-						// Clear payment data from session
-						sessionStorage.removeItem('paymentData');
-
-						// Redirect to success page
-						router.push(
-							`/checkout/success?orderId=${orderId}&userId=${result.userId || userData.merchantUserId}`
-						);
-					} catch (registerError: any) {
-						setError(
-							registerError.message ||
-								'Failed to register account after payment'
-						);
-						setShowPaymentIframe(false);
-					}
+					// Payment successful - redirect to success page
+					router.push(`/checkout/success?orderId=${orderId}&status=${paymentState}`);
 				} else if (paymentState === 'PENDING') {
 					// Payment is pending
-					router.push(`/checkout/success?orderId=${orderId}&status=pending`);
+					router.push(`/checkout/success?orderId=${orderId}&status=PENDING`);
 				} else {
 					// Payment failed or was cancelled
 					setError(`Payment was not successful. Status: ${paymentState}`);
@@ -234,63 +218,6 @@ export function CheckoutForm({ plan }: CheckoutFormProps) {
 		setError(null);
 		setPaymentData(null);
 	};
-
-	// Check for payment status on return from PhonePe (for redirect flow)
-	useEffect(() => {
-		const checkPaymentStatus = async () => {
-			// Get any query parameters (could include payment status indicators)
-			const orderId = searchParams.get('orderId');
-			const status = searchParams.get('status');
-
-			if (!orderId) return;
-
-			// Get stored payment data
-			const storedPaymentData = sessionStorage.getItem('paymentData');
-			let parsedData = null;
-
-			if (storedPaymentData) {
-				parsedData = JSON.parse(storedPaymentData);
-			}
-
-			// Check if we returned from a payment flow
-			if (orderId && (status || parsedData)) {
-				try {
-					// Check payment status with backend
-					const statusData = await checkPhonePePaymentStatus(orderId);
-					console.log('Payment status response on return:', statusData);
-
-					if (statusData.success) {
-						const paymentState = statusData.data.state || '';
-
-						if (
-							(paymentState === 'COMPLETED' || paymentState === 'SUCCESS') &&
-							parsedData
-						) {
-							// If payment succeeded and we have user data, register the user
-							try {
-								const userData = {
-									...parsedData,
-									paymentStatus: paymentState,
-									paymentId:
-										statusData.data.transactionId || parsedData.transactionId,
-								};
-
-								const result = await registerUser(userData);
-								sessionStorage.removeItem('paymentData');
-							} catch (error) {
-								console.error('Error registering user:', error);
-							}
-						}
-					}
-				} catch (err) {
-					console.error('Error checking returning payment status:', err);
-				}
-			}
-		};
-
-		// Check payment status on component mount if we have query params
-		checkPaymentStatus();
-	}, [router, searchParams]);
 
 	return (
 		<div className="mx-auto max-w-4xl overflow-hidden rounded-xl bg-white shadow-lg">

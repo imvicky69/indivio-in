@@ -106,16 +106,46 @@ export function TestPaymentCard() {
 	};
 
 	// Handle payment completion from PhonePe iframe
-	const handlePaymentComplete = (status: string) => {
+	const handlePaymentComplete = async (status: string) => {
 		console.log('Test payment completed with status:', status);
 
-		if (status === 'SUCCESS' || status === 'COMPLETED') {
-			// Redirect to success page with test order ID
-			const orderId = paymentData?.userData?.orderId;
-			router.push(`/checkout/success?orderId=${orderId}&status=${status}`);
-		} else {
-			// Payment failed or was cancelled
-			setError(`Payment was not successful. Status: ${status}`);
+		if (!paymentData || !paymentData.userData) {
+			setError('Payment information is missing. Please try again.');
+			setShowPaymentIframe(false);
+			return;
+		}
+
+		const { orderId } = paymentData.userData;
+
+		try {
+			// Call server-side endpoint to verify payment status
+			const response = await fetch(`/api/payments/status?orderId=${orderId}`);
+			const statusData = await response.json();
+
+			console.log('Test payment status verified:', statusData);
+
+			if (statusData.success) {
+				const paymentState = statusData.data.state || '';
+
+				if (paymentState === 'COMPLETED' || paymentState === 'SUCCESS') {
+					// Payment successful - redirect to success page
+					router.push(`/checkout/success?orderId=${orderId}&status=${paymentState}`);
+				} else if (paymentState === 'PENDING') {
+					// Payment is pending
+					router.push(`/checkout/success?orderId=${orderId}&status=PENDING`);
+				} else {
+					// Payment failed or was cancelled
+					setError(`Payment was not successful. Status: ${paymentState}`);
+					setShowPaymentIframe(false);
+				}
+			} else {
+				// API call succeeded but payment verification failed
+				setError(statusData.message || 'Payment verification failed');
+				setShowPaymentIframe(false);
+			}
+		} catch (err: any) {
+			console.error('Error verifying test payment:', err);
+			setError('Error verifying payment. Please try again.');
 			setShowPaymentIframe(false);
 		}
 	};

@@ -13,9 +13,10 @@ export async function GET(request: NextRequest) {
 		}
 
 		// Call the backend API from server-side
-		const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 
+		const apiBaseUrl =
+			process.env.NEXT_PUBLIC_API_BASE_URL ||
 			'https://asia-south1-indivio-in.cloudfunctions.net/api/api';
-		
+
 		const response = await fetch(
 			`${apiBaseUrl}/payments/status/${orderId}?details=true`,
 			{

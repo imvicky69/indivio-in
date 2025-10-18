@@ -5,9 +5,10 @@ export async function POST(request: NextRequest) {
 		const paymentData = await request.json();
 
 		// Call the backend API from server-side
-		const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 
+		const apiBaseUrl =
+			process.env.NEXT_PUBLIC_API_BASE_URL ||
 			'https://asia-south1-indivio-in.cloudfunctions.net/api/api';
-		
+
 		const response = await fetch(`${apiBaseUrl}/payments/initiate`, {
 			method: 'POST',
 			headers: {

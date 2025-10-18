@@ -31,7 +31,7 @@ function SuccessPageContent() {
 				// Call the server-side API endpoint
 				const response = await fetch(`/api/payments/status?orderId=${orderId}`);
 				const result = await response.json();
-				
+
 				if (result.success) {
 					const state = result.data.state;
 					setPaymentStatus(state);
