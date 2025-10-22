@@ -77,7 +77,7 @@ export function Navbar() {
 				{/* Desktop CTA Button */}
 				<div className="hidden items-center gap-3 md:flex">
 					<Link
-						href="/booking/professional"
+						href="/signup"
 						className="rounded-full bg-primary px-6 py-2.5 text-center font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-lg"
 					>
 						Get Started
@@ -123,7 +123,7 @@ export function Navbar() {
 								</Link>
 							))}
 							<Link
-								href="/booking/professional"
+								href="/signup"
 								className="w-full max-w-xs rounded-full bg-primary px-6 py-3 text-center font-semibold text-primary-foreground shadow-lg transition-all hover:bg-primary/90 hover:shadow-xl"
 							>
 								Get Started
