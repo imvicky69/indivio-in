@@ -6,6 +6,7 @@ import { HowItWorksSection } from '@/components/home/HowItWorksSection';
 import { DemoShowcase } from '@/components/home/DemoShowcase';
 import { CtaSection } from '@/components/ui/CtaSection';
 import { TechAdvantageSection } from '@/components/home/TechAdvantageSection';
+import { V2TeaserSection } from '@/components/home/V2TeaserSection';
 import type { Metadata } from 'next';
 
 // Revalidate every 1 minute (60 seconds)
@@ -46,6 +47,7 @@ export default function HomePage() {
 			<HeroSection />
 			<FeaturesSection />
 			<DemoShowcase />
+			<V2TeaserSection />
 			<TechAdvantageSection />
 			<HowItWorksSection />
 			<TechStackSection />
