@@ -13,6 +13,7 @@ import { CtaSection } from '@/components/ui/CtaSection';
 import { ValueSection } from '@/components/why-indivio/ValueSection';
 import { UnifiedAdvantage } from '@/components/why-indivio/UnifiedAdvantage';
 import { FindYourFit } from '@/components/why-indivio/FindYourFit';
+import { DigitalIndia } from '@/components/why-indivio/DigitalIndia';
 // Step 1: Set the page-specific SEO metadata
 // Revalidate every 1 minute (60 seconds)
 export const revalidate = 60;
@@ -55,6 +56,7 @@ export default function WhyIndivioPage() {
 			<OurStory />
 			<ValueSection />
 			<IndivioDifference />
+			<DigitalIndia />
 			<WhyTrustUs />
 			<FounderMessage />
 			<UnifiedAdvantage />

@@ -7,6 +7,7 @@ import { FeaturesHero } from '@/components/features/FeaturesHero';
 import { IncludedFeatures } from '@/components/features/IncludedFeatures';
 import { DetailedFeatureList } from '@/components/features/DetailedFeatureList';
 import { AdmissionBooster } from '@/components/features/AdmissionBooster';
+import { V2TechnologyStack } from '@/components/features/V2TechnologyStack';
 
 // Revalidate every 1 minute (60 seconds)
 export const revalidate = 60;
@@ -38,6 +39,7 @@ export default function FeaturesPage() {
 			<DetailedFeatureList />
 			<PlatformBenefits />
 			<FutureReady />
+			<V2TechnologyStack />
 			<CtaSection {...featuresCtaProps} />
 		</>
 	);

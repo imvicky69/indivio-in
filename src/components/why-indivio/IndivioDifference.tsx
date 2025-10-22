@@ -7,14 +7,14 @@ import { SectionHeading } from '../SectionHeading';
 import { AnimatedElement } from '../ui/AnimatedElement'; // <-- IMPORT OUR NEW ANIMATION COMPONENT
 import { Handshake, Zap, ShieldCheck, PackageCheck, Layers3, CloudCog } from 'lucide-react';
 
-// Data for the key differentiators (no changes here)
+// Data for the key differentiators
 const differenceData = [
-  { icon: <Handshake className="w-10 h-10 text-accent" />, title: 'Dedicated Partnership & Support', description: 'You\'re not just buying software; you\'re gaining a technical partner...' },
-  { icon: <Zap className="w-10 h-10 text-accent" />, title: 'Blazing-Fast Modern Technology', description: 'We use the latest React-based technology...' },
-  { icon: <ShieldCheck className="w-10 h-10 text-accent" />, title: 'Honest & Transparent Pricing', description: 'No hidden fees. No confusing contracts...' },
-  { icon: <PackageCheck className="w-10 h-10 text-accent" />, title: 'Built for Your Needs', description: 'From a smart toppers grid to an easy-to-update events calendar...' },
-  { icon: <Layers3 className="w-10 h-10 text-accent" />, title: 'A Platform That Grows With You', description: 'Start with a professional website today...' },
-  { icon: <CloudCog className="w-10 h-10 text-accent" />, title: 'Secure & Reliable Foundation', description: 'Built on Google\'s trusted cloud infrastructure...' },
+  { icon: <Handshake className="w-10 h-10 text-accent" />, title: 'Dedicated Partnership & Support', description: 'You\'re not just buying software; you\'re gaining a technical partner committed to your success. Personal support, not automated responses.' },
+  { icon: <Zap className="w-10 h-10 text-accent" />, title: 'Blazing-Fast Modern Technology', description: 'We use the latest React-based technology powered by Google Cloud for lightning-fast performance and reliability that parents and students will love.' },
+  { icon: <ShieldCheck className="w-10 h-10 text-accent" />, title: 'Honest & Transparent Pricing', description: 'No hidden fees. No confusing contracts. Just straightforward, affordable pricing designed for Indian schools. Most competitive rates in the market.' },
+  { icon: <PackageCheck className="w-10 h-10 text-accent" />, title: 'Built for Your Needs', description: 'From a smart toppers grid to an easy-to-update events calendar, every feature is designed understanding real school needs and challenges.' },
+  { icon: <Layers3 className="w-10 h-10 text-accent" />, title: 'A Platform That Grows With You', description: 'Start with a professional website today. Expand to complete school management with Indivio V2 tomorrow - attendance, PTM, classes, assignments, and more.' },
+  { icon: <CloudCog className="w-10 h-10 text-accent" />, title: 'Secure & Reliable Foundation', description: 'Built on Google\'s trusted cloud infrastructure with enterprise-grade security. Your data is safe, backed up, and always accessible.' },
 ];export function IndivioDifference() {
   return (
     <section className="bg-secondary text-secondary-foreground py-20 sm:py-28">

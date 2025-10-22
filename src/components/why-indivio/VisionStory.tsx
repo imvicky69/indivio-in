@@ -53,15 +53,18 @@ export function VisionStory() {
               </div>
               <div>
                 <h3 className="mb-3 font-display text-2xl font-bold text-primary">
-                  Building the Future Together
+                  Building the Future Together - Indivio V2
                 </h3>
                 <p className="text-lg leading-relaxed text-dark/80">
                   This is just the beginning. Today, we're helping schools establish
-                  their digital presence. Tomorrow, we're building a complete ecosystem
-                  — online admissions, smart attendance, integrated payments, parent
-                  portals, and beyond. We're not just creating software; we're building
-                  the infrastructure for India's educational future, and we want you to
-                  be part of this journey.
+                  their digital presence. Tomorrow, with Indivio V2, we're building a
+                  complete ecosystem — online attendance, virtual PTM, live classes,
+                  digital assignments and tests, smart fee management, and infinite
+                  EdTech possibilities. All powered by modern React and Google Cloud
+                  services at the most affordable pricing in India. We're not just
+                  creating software; we're building the infrastructure for India's
+                  educational future, especially for tier 2 and tier 3 city schools, and
+                  we want you to be part of this journey.
                 </p>
               </div>
             </div>

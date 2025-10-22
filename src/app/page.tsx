@@ -6,6 +6,7 @@ import { HowItWorksSection } from '@/components/home/HowItWorksSection';
 import { DemoShowcase } from '@/components/home/DemoShowcase';
 import { CtaSection } from '@/components/ui/CtaSection';
 import { TechAdvantageSection } from '@/components/home/TechAdvantageSection';
+import { IndivioV2Announcement } from '@/components/home/IndivioV2Announcement';
 import type { Metadata } from 'next';
 
 // Revalidate every 1 minute (60 seconds)
@@ -15,7 +16,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
 	title: 'Indivio | Affordable School Management System & Website Solution',
 	description:
-		"Transform your educational institution with Indivio's cost-effective all-in-one school management system and professional website solution. Perfect for schools, colleges, and institutes of all sizes.",
+		"Transform your educational institution with Indivio's cost-effective all-in-one school management system and professional website solution. Indivio V2 coming soon with online attendance, PTM, classes, and more. Perfect for schools, colleges, and institutes of all sizes.",
 	keywords: [
 		'affordable school management system',
 		'school website builder',
@@ -24,11 +25,16 @@ export const metadata: Metadata = {
 		'low-cost school software',
 		'digital campus solutions',
 		'integrated school platform',
+		'online attendance system',
+		'virtual PTM',
+		'online classes India',
+		'tier 2 tier 3 city schools',
+		'Google Cloud education',
 	],
 	openGraph: {
 		title: "Indivio - Transform Your School's Digital Presence",
 		description:
-			'Get a professional school website and complete management system at an affordable price. Designed for Indian educational institutions.',
+			'Get a professional school website and complete management system at an affordable price. V2 launching soon with comprehensive EdTech solutions. Designed for Indian educational institutions.',
 		images: [
 			{
 				url: '/indivio.png',
@@ -45,6 +51,7 @@ export default function HomePage() {
 		<>
 			<HeroSection />
 			<FeaturesSection />
+			<IndivioV2Announcement />
 			<DemoShowcase />
 			<TechAdvantageSection />
 			<HowItWorksSection />
