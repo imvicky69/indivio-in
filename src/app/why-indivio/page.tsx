@@ -9,6 +9,7 @@ import { LaunchProcess } from '@/components/why-indivio/LaunchProcess';
 import { FounderMessage } from '@/components/why-indivio/FounderMessage';
 import { WhyTrustUs } from '@/components/why-indivio/WhyTrustUs';
 import { CtaSection } from '@/components/ui/CtaSection';
+import { V2TeaserBanner } from '@/components/ui/V2TeaserBanner';
 
 import { ValueSection } from '@/components/why-indivio/ValueSection';
 import { UnifiedAdvantage } from '@/components/why-indivio/UnifiedAdvantage';
@@ -51,6 +52,7 @@ export default function WhyIndivioPage() {
 		<div className="relative min-h-screen">
 			<WhyIndivioHero />
 			<BenefitsGrid />
+			<V2TeaserBanner />
 			<VisionStory />
 			<OurStory />
 			<ValueSection />
