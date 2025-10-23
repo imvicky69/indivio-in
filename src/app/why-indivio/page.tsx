@@ -7,6 +7,7 @@ import { OurStory } from '@/components/why-indivio/OurStory';
 import { IndivioDifference } from '@/components/why-indivio/IndivioDifference';
 import { LaunchProcess } from '@/components/why-indivio/LaunchProcess';
 import { FounderMessage } from '@/components/why-indivio/FounderMessage';
+import { CEOMessage } from '@/components/why-indivio/CEOMessage';
 import { WhyTrustUs } from '@/components/why-indivio/WhyTrustUs';
 import { CtaSection } from '@/components/ui/CtaSection';
 import { V2TeaserBanner } from '@/components/ui/V2TeaserBanner';
@@ -59,6 +60,7 @@ export default function WhyIndivioPage() {
 			<IndivioDifference />
 			<WhyTrustUs />
 			<FounderMessage />
+			<CEOMessage />
 			<UnifiedAdvantage />
 			<LaunchProcess />
 			<FindYourFit />
