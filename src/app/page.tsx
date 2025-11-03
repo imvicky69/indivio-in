@@ -7,6 +7,11 @@ import { DemoShowcase } from '@/components/home/DemoShowcase';
 import { CtaSection } from '@/components/ui/CtaSection';
 import { TechAdvantageSection } from '@/components/home/TechAdvantageSection';
 import { V2TeaserBanner } from '@/components/ui/V2TeaserBanner';
+import { StatsSection } from '@/components/home/StatsSection';
+import { TestimonialsSection } from '@/components/home/TestimonialsSection';
+import { ComparisonSection } from '@/components/home/ComparisonSection';
+import { TrustBadges } from '@/components/ui/TrustBadges';
+import { NewsletterSignup } from '@/components/ui/NewsletterSignup';
 import type { Metadata } from 'next';
 
 // Revalidate every 1 minute (60 seconds)
@@ -45,12 +50,17 @@ export default function HomePage() {
 	return (
 		<>
 			<HeroSection />
+			<TrustBadges />
+			<StatsSection />
 			<FeaturesSection />
 			<V2TeaserBanner />
+			<ComparisonSection />
 			<DemoShowcase />
+			<TestimonialsSection />
 			<TechAdvantageSection />
 			<HowItWorksSection />
 			<TechStackSection />
+			<NewsletterSignup />
 			<CtaSection
 				heading="Ready to Transform Your School's Digital Presence?"
 				subheading="Get 17% OFF on all plans! Limited time launch offer. Join schools building their digital future with Indivio."

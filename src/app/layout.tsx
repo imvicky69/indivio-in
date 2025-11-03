@@ -2,6 +2,8 @@ import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
+import { FloatingActionButton } from '@/components/ui/FloatingActionButton';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import NextTopLoader from 'nextjs-toploader';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
@@ -224,8 +226,10 @@ export default function RootLayout({
       <body>
         <NextTopLoader color="hsl(var(--primary))" showSpinner={false} />
         <Navbar />
+        <Breadcrumb />
         <main className="overflow-x-hidden">{children}</main>
         <Footer />
+        <FloatingActionButton />
       </body>
     </html>
   );

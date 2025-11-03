@@ -102,6 +102,32 @@ export function HeroSection() {
 						🎉 Launch Offer: Get 17% OFF on all plans!
 					</span>
 				</motion.div>
+
+				{/* Scroll indicator */}
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1, y: [0, 10, 0] }}
+					transition={{ 
+						opacity: { duration: 0.6, delay: 1.1 },
+						y: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
+					}}
+					className="mt-16"
+				>
+					<div className="flex flex-col items-center gap-2 text-muted-foreground">
+						<span className="text-sm">Scroll to explore</span>
+						<svg
+							className="h-6 w-6"
+							fill="none"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth="2"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+						</svg>
+					</div>
+				</motion.div>
 			</div>
 		</section>
 	);

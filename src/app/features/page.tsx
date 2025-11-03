@@ -8,6 +8,7 @@ import { IncludedFeatures } from '@/components/features/IncludedFeatures';
 import { DetailedFeatureList } from '@/components/features/DetailedFeatureList';
 import { AdmissionBooster } from '@/components/features/AdmissionBooster';
 import { V2TeaserBanner } from '@/components/ui/V2TeaserBanner';
+import { InteractiveFeatureShowcase } from '@/components/features/InteractiveFeatureShowcase';
 
 // Revalidate every 1 minute (60 seconds)
 export const revalidate = 60;
@@ -36,6 +37,7 @@ export default function FeaturesPage() {
 			<FeaturesHero />
 			<IncludedFeatures />
 			<V2TeaserBanner />
+			<InteractiveFeatureShowcase />
 			<AdmissionBooster />
 			<DetailedFeatureList />
 			<PlatformBenefits />
