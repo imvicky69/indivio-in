@@ -2,6 +2,7 @@ import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
+import { FloatingActionButton } from '@/components/ui/FloatingActionButton';
 import NextTopLoader from 'nextjs-toploader';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
@@ -226,6 +227,7 @@ export default function RootLayout({
         <Navbar />
         <main className="overflow-x-hidden">{children}</main>
         <Footer />
+        <FloatingActionButton />
       </body>
     </html>
   );

@@ -11,6 +11,7 @@ export function Navbar() {
 		{ href: '/features', label: 'Features' },
 		{ href: '/pricing', label: 'Pricing & Plans' },
 		{ href: '/why-indivio', label: 'Why Indivio?' },
+		{ href: '/about', label: 'About' },
 		{ href: '/contact', label: 'Contact' },
 	];
 

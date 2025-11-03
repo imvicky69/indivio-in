@@ -19,6 +19,7 @@ const navLinks = [
 	{ href: '/features', label: 'Features' },
 	{ href: '/pricing', label: 'Pricing' },
 	{ href: '/why-indivio', label: 'Why Indivio ?' },
+	{ href: '/about', label: 'About' },
 	{ href: '/faq', label: 'FAQ' },
 	{ href: '/contact', label: 'Contact' },
 ];
