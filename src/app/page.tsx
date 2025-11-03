@@ -11,6 +11,7 @@ import { StatsSection } from '@/components/home/StatsSection';
 import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 import { ComparisonSection } from '@/components/home/ComparisonSection';
 import { TrustBadges } from '@/components/ui/TrustBadges';
+import { NewsletterSignup } from '@/components/ui/NewsletterSignup';
 import type { Metadata } from 'next';
 
 // Revalidate every 1 minute (60 seconds)
@@ -59,6 +60,7 @@ export default function HomePage() {
 			<TechAdvantageSection />
 			<HowItWorksSection />
 			<TechStackSection />
+			<NewsletterSignup />
 			<CtaSection
 				heading="Ready to Transform Your School's Digital Presence?"
 				subheading="Get 17% OFF on all plans! Limited time launch offer. Join schools building their digital future with Indivio."

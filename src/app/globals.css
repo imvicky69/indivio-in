@@ -187,3 +187,57 @@ body {
 .section-padding {
 	@apply py-16 sm:py-20 md:py-24;
 }
+
+/* Smooth scroll behavior */
+@media (prefers-reduced-motion: no-preference) {
+	* {
+		scroll-behavior: smooth;
+	}
+}
+
+/* Enhanced link transitions */
+a {
+	@apply transition-colors duration-300;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+	background: hsl(var(--primary));
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: hsl(var(--primary) / 0.8);
+}
+
+/* Selection color */
+::selection {
+	background: hsl(var(--primary) / 0.2);
+	color: hsl(var(--foreground));
+}
+
+/* Focus visible styles for accessibility */
+:focus-visible {
+	@apply outline-2 outline-offset-2 outline-primary;
+}
+
+/* Image loading optimization */
+img {
+	@apply max-w-full h-auto;
+}
+
+/* Glassmorphism effect utility */
+.glass-effect {
+	backdrop-filter: blur(10px);
+	background: hsl(var(--background) / 0.8);
+	border: 1px solid hsl(var(--border) / 0.5);
+}
