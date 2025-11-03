@@ -90,17 +90,43 @@ export function HeroSection() {
 					</Button>
 				</motion.div>
 
-				{/* Launch Offer Badge */}
+				{/* Launch Offer Badge with pulse animation */}
 				<motion.div
 					initial={{ opacity: 0, scale: 0.9 }}
 					animate={{ opacity: 1, scale: 1 }}
 					transition={{ duration: 0.6, delay: 0.9 }}
-					className="mt-8 inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-50 px-6 py-3 shadow-lg"
+					className="mt-8 inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-50 px-6 py-3 shadow-lg animate-pulse"
 				>
 					<Sparkles className="h-5 w-5 text-green-600" />
 					<span className="font-semibold text-green-700">
 						🎉 Launch Offer: Get 17% OFF on all plans!
 					</span>
+				</motion.div>
+
+				{/* Scroll indicator */}
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1, y: [0, 10, 0] }}
+					transition={{ 
+						opacity: { duration: 0.6, delay: 1.1 },
+						y: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
+					}}
+					className="mt-16"
+				>
+					<div className="flex flex-col items-center gap-2 text-muted-foreground">
+						<span className="text-sm">Scroll to explore</span>
+						<svg
+							className="h-6 w-6"
+							fill="none"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth="2"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+						</svg>
+					</div>
 				</motion.div>
 			</div>
 		</section>

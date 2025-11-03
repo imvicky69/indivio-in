@@ -10,6 +10,7 @@ import { V2TeaserBanner } from '@/components/ui/V2TeaserBanner';
 import { StatsSection } from '@/components/home/StatsSection';
 import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 import { ComparisonSection } from '@/components/home/ComparisonSection';
+import { TrustBadges } from '@/components/ui/TrustBadges';
 import type { Metadata } from 'next';
 
 // Revalidate every 1 minute (60 seconds)
@@ -48,6 +49,7 @@ export default function HomePage() {
 	return (
 		<>
 			<HeroSection />
+			<TrustBadges />
 			<StatsSection />
 			<FeaturesSection />
 			<V2TeaserBanner />
