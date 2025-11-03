@@ -44,7 +44,9 @@ function Counter({ value, duration = 2 }: { value: number; duration?: number }) 
 	useEffect(() => {
 		if (!isInView) return;
 
+		let animationFrameId: number;
 		let startTime: number;
+		
 		const animate = (currentTime: number) => {
 			if (!startTime) startTime = currentTime;
 			const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
@@ -52,11 +54,17 @@ function Counter({ value, duration = 2 }: { value: number; duration?: number }) 
 			setCount(Math.floor(progress * value));
 
 			if (progress < 1) {
-				requestAnimationFrame(animate);
+				animationFrameId = requestAnimationFrame(animate);
 			}
 		};
 
-		requestAnimationFrame(animate);
+		animationFrameId = requestAnimationFrame(animate);
+
+		return () => {
+			if (animationFrameId) {
+				cancelAnimationFrame(animationFrameId);
+			}
+		};
 	}, [isInView, value, duration]);
 
 	return <span ref={ref}>{count.toLocaleString()}</span>;

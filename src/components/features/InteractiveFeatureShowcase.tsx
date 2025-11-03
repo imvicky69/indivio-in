@@ -62,7 +62,7 @@ const features = [
 		id: 'analytics',
 		icon: BarChart,
 		title: 'Analytics & Reports',
-		description: 'Comprehensive insights into your school\'s performance',
+		description: "Comprehensive insights into your school's performance",
 		benefits: [
 			'Admission statistics',
 			'Financial reports',

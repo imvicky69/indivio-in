@@ -90,12 +90,12 @@ export function HeroSection() {
 					</Button>
 				</motion.div>
 
-				{/* Launch Offer Badge with pulse animation */}
+				{/* Launch Offer Badge */}
 				<motion.div
 					initial={{ opacity: 0, scale: 0.9 }}
 					animate={{ opacity: 1, scale: 1 }}
 					transition={{ duration: 0.6, delay: 0.9 }}
-					className="mt-8 inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-50 px-6 py-3 shadow-lg animate-pulse"
+					className="mt-8 inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-50 px-6 py-3 shadow-lg"
 				>
 					<Sparkles className="h-5 w-5 text-green-600" />
 					<span className="font-semibold text-green-700">
